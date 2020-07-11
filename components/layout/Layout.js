@@ -58,7 +58,7 @@ const Layout = (props) => {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@400;700&display=swap"
           rel="stylesheet"
         />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" integrity="sha512-UJfAaOlIRtdR+0P6C3KUoTDAxVTuy3lnSXLyLKlHYJlcSU8Juge/mjeaxDNMlw9LgeIotgz5FP8eUQPhX1q10A==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
         <link href="/static/css/app.css" rel="stylesheet" />
       </Head>
@@ -66,12 +66,13 @@ const Layout = (props) => {
       <main>{props.children}</main>
       <footer
       css={css`
-        background-color:#eeeeee;
+        background-color:#e0e0e0;
         padding:2rem 0;
+        
       `}
       >
-      <div class="footer-copyright">
-            <div class="container center">
+      <div className="footer-copyright">
+            <div className="container center">
                 © 2014 Copyright Text
             </div>
           </div>

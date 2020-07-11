@@ -1,4 +1,5 @@
 import React from "react";
+import Link from 'next/link';
 
 const Header = () => {
    
@@ -6,6 +7,7 @@ const Header = () => {
     <nav>
         <div className="nav-wrapper grey lighten-5">
             <div className="container">
+
                 <a href="#!" className="brand-logo">
                 Chaviweb
                 </a>
@@ -14,16 +16,16 @@ const Header = () => {
                 </a>
                 <ul className="right hide-on-med-and-down">
                 <li>
-                    <a href="#">Inicio</a>
+                    <Link href="/"><a>Inicio</a></Link>
                 </li>
                 <li>
-                    <a href="#">Tienda</a>
+                    <Link href="#"><a>Tienda</a></Link>
                 </li>
                 <li>
-                    <a href="#">Registro</a>
+                    <Link href="/registro"><a>Registro</a></Link>
                 </li>
                 <li>
-                    <a href="#">Iniciar Sesión</a>
+                    <Link href="/login"><a>Iniciar Sesión</a></Link>
                 </li>
                 </ul>
             </div>
