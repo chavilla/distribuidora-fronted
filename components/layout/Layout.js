@@ -34,6 +34,7 @@ const Layout = (props) => {
 
           h3 {
             font-family: "Inter", sans-serif;
+            color:#3d3d3d;
           }
           ul {
             list-style: none;
@@ -44,6 +45,12 @@ const Layout = (props) => {
             text-decoration: none;
             color:black !important;
           }
+
+          li a{
+            color:#f57c00 !important;
+            font-weight:700;
+          }
+
           img {
             max-height: 500px;
             max-width: 600px;
@@ -65,10 +72,10 @@ const Layout = (props) => {
       <Header />
       <main>{props.children}</main>
       <footer
-      css={css`
-        background-color:#e0e0e0;
+      css={css `
+        background-color:#3d3d3d;
         padding:2rem 0;
-        
+        color:white;
       `}
       >
       <div className="footer-copyright">

@@ -6,7 +6,9 @@ const Header = () => {
   return (
     <nav>
         <div className="nav-wrapper grey lighten-5">
-            <div className="container">
+            <div className="container"
+            
+            >
 
                 <a href="#!" className="brand-logo">
                 Chaviweb
@@ -19,7 +21,7 @@ const Header = () => {
                     <Link href="/"><a>Inicio</a></Link>
                 </li>
                 <li>
-                    <Link href="#"><a>Tienda</a></Link>
+                    <Link href="/tienda"><a>Tienda</a></Link>
                 </li>
                 <li>
                     <Link href="/registro"><a>Registro</a></Link>

@@ -3,7 +3,6 @@ import { css } from '@emotion/core';
 import Layout from '../components/layout/Layout';
 import { Formulario, Campo, Boton } from '../components/ui/Formulario';
 import useValidacion from '../hooks/useValidacion';
-import UsuarioContext from '../context/usuarioContext';
 
 const stateInicial={
     email:'',
@@ -22,7 +21,7 @@ const Login = (props) => {
         <Layout>
             <div className="container">
                 <Formulario>
-                    <h3 className="center" css={css` margin-bottom:2rem; `}>Ingresa tus datos</h3>
+                    <h3 className="center" css={css `margin-bottom:2rem;`}>Ingresa tus datos</h3>
                     <Campo>  
                         <input 
                         placeholder="Email" 

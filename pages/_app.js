@@ -1,16 +1,12 @@
-import App from 'next/app';
-import { Component } from 'react';
-import UsuarioContext from '../context/usuarioContext';
+import React from "react";
+import ProductoState from "../context/productos/productoState";
 
-const MyApp = (props) => {
+const MyApp = ({ Component, pageProps }) => {
+  return (
+    <ProductoState>
+      <Component {...pageProps} />
+    </ProductoState>
+  );
+};
 
-    const { Component, pageProps }=props;
-
-    return ( 
-        <UsuarioContext.Provider>
-            <Component {...pageProps} />
-        </UsuarioContext.Provider>
-     );
-}
- 
 export default MyApp;

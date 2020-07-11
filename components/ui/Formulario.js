@@ -4,7 +4,7 @@ export const Formulario=styled.form`
     max-width:500px;
     padding: 4rem 0;
     margin: 0 auto;
-    margin-bottom:4rem;
+    margin-bottom:6rem;
 `;
 
 export const Campo=styled.div`
@@ -33,8 +33,12 @@ export const Boton=styled.button`
     width:100%;
     border:none;
     cursor:pointer;
-    background-color: #00897b;
+    background-color: #fb8c00;
     color:white;
     padding: 1rem;
     margin-top: 3rem;
+
+    &:hover{
+        background-color:#ff9800;
+    }
 `;
