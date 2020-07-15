@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
+import Productocontext from '../context/productos/productoContext';
 
 const Producto = ({producto}) => {
 
+    //styled components
     const Img=styled.img`
         min-width:100%;
         max-height:250px;
@@ -27,8 +29,17 @@ const Producto = ({producto}) => {
         font-size:1.7rem; 
         font-weight:bold;
     `;
+    //fin styled 
 
-    const { nombre, precio }=producto;
+    //context de productos
+    const { añadirProductoCarrito }=useContext(Productocontext);
+
+    const añadirProducto=(producto)=>{
+        producto.carrito=true;
+        //añadirProductoCarrito(producto);
+    }
+
+    const { nombre, precio, carrito }=producto;
 
     return ( 
        
@@ -45,7 +56,9 @@ const Producto = ({producto}) => {
                         <Precio className='center'>${precio}</Precio>
                     </div>
                     <div className="card-action">
-                        <BotonProducto>Añadir al carrito</BotonProducto>
+                        <BotonProducto
+                        onClick={e=>añadirProducto(producto)}
+                        >{carrito ? 'Añadido al carrito': 'Añadir al carrito'}</BotonProducto>
                     </div>
                 </div>
             </div>
