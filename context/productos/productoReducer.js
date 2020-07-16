@@ -12,7 +12,8 @@ export default (state,action)=>{
             }
         case AGREGAR_PRODUCTO_CARRITO:
             return{
-                ...state
+                ...state,
+                productos: state.productos.map(producto=> producto.id === action.payload.id ? action.payload : producto )
             }
         default:{
             return state;

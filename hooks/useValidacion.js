@@ -21,7 +21,8 @@ const useValidacion = (state,fn) => {
     return {
         valores,
         handleChange,
-        handleSubmit
+        handleSubmit,
+        setValores
     }
 }
  

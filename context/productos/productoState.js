@@ -29,9 +29,11 @@ const productoState=({children})=>{
         })
     }
 
-    const añadirProductoCarrito=(carrito)=>{
+    const añadirProductoCarrito=(producto)=>{
+        console.log(producto);
         dispatch({
-            type: AGREGAR_PRODUCTO_CARRITO
+            type: AGREGAR_PRODUCTO_CARRITO,
+            payload: producto
         })
     }
 

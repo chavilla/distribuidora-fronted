@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import styled from '@emotion/styled';
 import {css} from '@emotion/core';
 import Productocontext from '../context/productos/productoContext';
@@ -32,11 +32,13 @@ const Producto = ({producto}) => {
     //fin styled 
 
     //context de productos
-    const { añadirProductoCarrito }=useContext(Productocontext);
+    const {obtenerProductos,añadirProductoCarrito }=useContext(Productocontext);
 
-    const añadirProducto=(producto)=>{
+    obtenerProductos();
+
+    const añadirProducto=producto=>{
         producto.carrito=true;
-        //añadirProductoCarrito(producto);
+        añadirProductoCarrito(producto);
     }
 
     const { nombre, precio, carrito }=producto;
@@ -57,7 +59,8 @@ const Producto = ({producto}) => {
                     </div>
                     <div className="card-action">
                         <BotonProducto
-                        onClick={e=>añadirProducto(producto)}
+                        className={carrito ? 'orange lighten-2': null}
+                        onClick={()=>{añadirProducto(producto)}}
                         >{carrito ? 'Añadido al carrito': 'Añadir al carrito'}</BotonProducto>
                     </div>
                 </div>

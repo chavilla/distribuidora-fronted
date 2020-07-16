@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import Layout from '../components/layout/Layout';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
@@ -17,7 +17,7 @@ const Section=styled.section`
 
 const Tienda = () => {
 
-    const { productos }=useContext(productoContext);
+    const { productos, obtenerProductos}=useContext(productoContext);
 
     return ( 
         <Layout>
