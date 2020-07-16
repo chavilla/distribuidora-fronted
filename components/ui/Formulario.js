@@ -53,4 +53,10 @@ export const Boton=styled.button`
     &:hover{
         background-color:#0277bd;
     }
+
+    &::checked{
+        background-color:black;
+    }
+
+    &:
 `;
