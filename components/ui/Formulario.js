@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 
 export const Formulario=styled.form`
-    max-width:500px;
-    padding: 4rem 0;
+    max-width:400px;
+    background-color:white;
+    padding: 2rem;
+    border-radius: 5px;
     margin: 0 auto;
     margin-bottom:6rem;
 `;
@@ -12,6 +14,16 @@ export const Campo=styled.div`
     flex-direction:column;
     align-items:center;
     padding: 1rem 0;
+
+    /* label focus color */
+    .input-field input[type=text]:focus + label {
+        color: #000 !important;
+    }
+    /* label underline focus color */
+    .input-field input[type=text]:focus {
+        border-bottom: 1px solid #000 !important;
+        box-shadow: 0 1px 0 0 #000 !important;
+    }
    
     @media(min-width:768px){
 
@@ -33,12 +45,12 @@ export const Boton=styled.button`
     width:100%;
     border:none;
     cursor:pointer;
-    background-color: #fb8c00;
+    background-color: #0091ea;
     color:white;
     padding: 1rem;
     margin-top: 3rem;
 
     &:hover{
-        background-color:#ff9800;
+        background-color:#0277bd;
     }
 `;

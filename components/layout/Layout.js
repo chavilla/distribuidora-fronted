@@ -47,7 +47,7 @@ const Layout = (props) => {
           }
 
           li a{
-            color:#f57c00 !important;
+            color:#ffffff !important;
             font-weight:700;
           }
 
@@ -70,10 +70,12 @@ const Layout = (props) => {
         <link href="/static/css/app.css" rel="stylesheet" />
       </Head>
       <Header />
-      <main>{props.children}</main>
-      <footer
+      <main 
+      className='grey lighten-4'
+      >{props.children}
+       <footer
       css={css `
-        background-color:#3d3d3d;
+        background-color:#212121;
         padding:2rem 0;
         color:white;
       `}
@@ -84,6 +86,7 @@ const Layout = (props) => {
             </div>
           </div>
       </footer>
+      </main>
     </>
   );
 };

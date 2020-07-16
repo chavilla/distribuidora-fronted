@@ -5,7 +5,7 @@ const Header = () => {
    
   return (
     <nav>
-        <div className="nav-wrapper grey lighten-5">
+        <div className="nav-wrapper  light-blue accent-4">
             <div className="container"
             
             >

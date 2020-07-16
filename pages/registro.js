@@ -2,28 +2,34 @@ import React, { useContext } from "react";
 import { css } from "@emotion/core";
 import Layout from "../components/layout/Layout";
 import { Formulario, Campo, Boton } from "../components/ui/Formulario";
-import useValidacion from "../hooks/useValidacion";
-
-const stateInicial = {
-  email: "",
-  nombre: "",
-  password: "",
-};
+import { useFormik } from 'formik';
 
 const Registro = (props) => {
-  const { valores, handleChange, handleSubmit } = useValidacion(stateInicial);
-  const { email, nombre, password } = valores;
 
+  const formik=useFormik({
+    initialValues:{
+      email: "",
+      nombre: "",
+      password: "",
+    },
+    onSubmit:(values)=>{
+      console.log(values);
+    }
+  })
 
   return (
     <Layout>
-      <div className="container">
+      <div className="container" 
+      css={css `
+        padding-top:4rem;
+      `}
+      >
         <Formulario
-        onSubmit={handleSubmit}
+        onSubmit={formik.handleSubmit}
         >
           <h3
             className="center"
-            css={css`
+            css={css `
               margin-bottom: 2rem;
             `}
           >
@@ -33,29 +39,35 @@ const Registro = (props) => {
             <input
               placeholder="Email"
               type="text"
+              className='input-field'
               name="email"
-              value={email}
-              onChange={handleChange}
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             ></input>
           </Campo>
 
           <Campo>
             <input
               type="text"
+              className='input-field'
               placeholder="Nombre"
               name="nombre"
-              value={nombre}
-              onChange={handleChange}
+              value={formik.values.nombre}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             ></input>
           </Campo>
 
           <Campo>
             <input
               type="password"
+              className='input-field'
               placeholder="Password"
               name="password"
-              value={password}
-              onChange={handleChange}
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             ></input>
           </Campo>
 

@@ -59,6 +59,7 @@ const Producto = ({producto}) => {
                     </div>
                     <div className="card-action">
                         <BotonProducto
+                        type='button'
                         className={carrito ? 'orange lighten-2': null}
                         onClick={()=>{añadirProducto(producto)}}
                         >{carrito ? 'Añadido al carrito': 'Añadir al carrito'}</BotonProducto>
