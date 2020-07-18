@@ -45,10 +45,13 @@ const Tienda = () => {
 
     const { productos, añadirProductoCarrito ,obtenerProductos}=useContext(productoContext);
 
+    useEffect(()=>{
+      obtenerProductos();
+    },[productos])
+
     const añadirProducto = (producto) => {
         producto.carrito = true;
         añadirProductoCarrito(producto);
-        obtenerProductos();
       };
 
     return ( 
@@ -66,41 +69,10 @@ const Tienda = () => {
             <Section>
             <div className="row">
                 { productos.map(producto=>(
-                    <div
-                    className="col s12 m6 l3"
+                    <Producto
                     key={producto.id}
-                    css={css `
-                      margin: 1rem 0;
-                    `}
-                  >
-                    <div className="card">
-                      <div className="card-image">
-                        <Img src={`./static/img/${producto.nombre}.jpg`}></Img>
-                      </div>
-                      <div className="card-content">
-                        <h3
-                          className="center"
-                          css={css `
-                            font-size: 2rem;
-                          `}
-                        >
-                          {producto.nombre}
-                        </h3>
-                        <Precio className="center">${producto.precio}</Precio>
-                      </div>
-                      <div className="card-action">
-                        <BotonProducto
-                          type="button"
-                          className={producto.carrito ? "orange lighten-2" : null}
-                          onClick={() => {
-                            añadirProducto(producto);
-                          }}
-                        >
-                          {producto.carrito ? "Añadido al carrito" : "Añadir al carrito"}
-                        </BotonProducto>
-                      </div>
-                    </div>
-                  </div>
+                    producto={producto}
+                    />
                 )) }
             </div>
             </Section>

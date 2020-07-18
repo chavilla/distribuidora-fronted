@@ -15,6 +15,7 @@ const productoState = ({ children }) => {
       { id: 7, nombre: "audífonos", precio: 18, carrito: false },
       { id: 8, nombre: "escaner", precio: 65, carrito: false },
     ],
+    agregado: false
   };
   const [state, dispatch] = useReducer(productoReducer, initialState);
 
@@ -26,7 +27,6 @@ const productoState = ({ children }) => {
   };
 
   const añadirProductoCarrito = (producto) => {
-    console.log(producto);
     dispatch({
       type: AGREGAR_PRODUCTO_CARRITO,
       payload: producto,
@@ -37,6 +37,7 @@ const productoState = ({ children }) => {
     <productoContext.Provider
       value={{
         productos: state.productos,
+        agregado: state.agregado,
         obtenerProductos,
         añadirProductoCarrito,
       }}

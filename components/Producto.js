@@ -31,12 +31,16 @@ const Producto = ({ producto }) => {
   //fin styled
 
   //context de productos
-  const { añadirProductoCarrito, obtenerProductos } = useContext(Productocontext);
+  const { productos, añadirProductoCarrito, obtenerProductos } = useContext(Productocontext);
+
+  useEffect(()=>{
+    obtenerProductos();
+  },[productos])
 
   const añadirProducto = (producto) => {
     producto.carrito = true;
     añadirProductoCarrito(producto);
-    obtenerProductos();
+
   };
 
   const { nombre, precio, carrito } = producto;
@@ -66,12 +70,15 @@ const Producto = ({ producto }) => {
         <div className="card-action">
           <BotonProducto
             type="button"
-            className={carrito ? "orange lighten-2" : null}
+            className={carrito ? " light-blue accent-3" : null}
             onClick={() => {
               añadirProducto(producto);
             }}
           >
-            {carrito ? "Añadido al carrito" : "Añadir al carrito"}
+            {carrito ? 
+            (
+              "Añadido al carrito") 
+            :"Añadir al carrito"}
           </BotonProducto>
         </div>
       </div>

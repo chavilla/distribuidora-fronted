@@ -4,7 +4,7 @@ import {
 } from '../../types/';
 
 export default (state,action)=>{
-    switch(action){
+    switch(action.type){
         case OBTENER_PRODUCTOS:
             return{
                 ...state,
@@ -13,7 +13,7 @@ export default (state,action)=>{
         case AGREGAR_PRODUCTO_CARRITO:
             return{
                 ...state,
-                productos: state.productos.map(producto=> producto.id === action.payload.id ? action.payload : producto )
+                productos: state.productos.map(producto=> producto.id === action.payload.id ? action.payload : producto ),
             }
         default:{
             return state;
