@@ -15,9 +15,41 @@ const Section=styled.section`
     }
 `;
 
+//styled components
+const Img = styled.img`
+min-width: 100%;
+max-height: 250px;
+display: block;
+`;
+
+const BotonProducto = styled.button`
+border: none;
+padding: 1rem 2rem;
+background-color: #ed7b25;
+color: white;
+display: block;
+width: 100%;
+margin: 0 auto;
+cursor: pointer;
+`;
+
+const Precio = styled.span`
+display: block;
+text-align: center;
+font-size: 1.7rem;
+font-weight: bold;
+`;
+//fin styled
+
 const Tienda = () => {
 
-    const { productos, obtenerProductos}=useContext(productoContext);
+    const { productos, añadirProductoCarrito ,obtenerProductos}=useContext(productoContext);
+
+    const añadirProducto = (producto) => {
+        producto.carrito = true;
+        añadirProductoCarrito(producto);
+        obtenerProductos();
+      };
 
     return ( 
         <Layout>
@@ -34,10 +66,41 @@ const Tienda = () => {
             <Section>
             <div className="row">
                 { productos.map(producto=>(
-                    <Producto
+                    <div
+                    className="col s12 m6 l3"
                     key={producto.id}
-                    producto={producto}
-                    />
+                    css={css `
+                      margin: 1rem 0;
+                    `}
+                  >
+                    <div className="card">
+                      <div className="card-image">
+                        <Img src={`./static/img/${producto.nombre}.jpg`}></Img>
+                      </div>
+                      <div className="card-content">
+                        <h3
+                          className="center"
+                          css={css `
+                            font-size: 2rem;
+                          `}
+                        >
+                          {producto.nombre}
+                        </h3>
+                        <Precio className="center">${producto.precio}</Precio>
+                      </div>
+                      <div className="card-action">
+                        <BotonProducto
+                          type="button"
+                          className={producto.carrito ? "orange lighten-2" : null}
+                          onClick={() => {
+                            añadirProducto(producto);
+                          }}
+                        >
+                          {producto.carrito ? "Añadido al carrito" : "Añadir al carrito"}
+                        </BotonProducto>
+                      </div>
+                    </div>
+                  </div>
                 )) }
             </div>
             </Section>

@@ -25,33 +25,20 @@ const usuarioState=(props)=>{
 
         try {
             const respuesta=await clienteAxios.post('/api/users',usuario);
-            
-            if(respuesta.data.error){
                 dispatch({
                     type:CREAR_USUARIO_ERROR,
-                    payload:respuesta.data.error
+                    payload:respuesta.data.msg
                 });
-
-                setTimeout(()=>{
-                    ocultarMensaje();
-                },3000)
-              
-            }
-            if(respuesta.data.success){
-                dispatch({
-                    type:CREAR_USUARIO,
-                    payload:respuesta.data.success
-                })
-                setTimeout(()=>{
-                    ocultarMensaje();
-                },3000)
-            }
         } catch (error) {
             console.log(error);
             dispatch({
-                type:CREAR_USUARIO_ERROR
+                type:CREAR_USUARIO_ERROR,
+                payload: error.response.data.msg 
             })
         }
+        setTimeout(()=>{
+            ocultarMensaje()
+        },3000)
     }
 
     const ocultarMensaje=()=>{
