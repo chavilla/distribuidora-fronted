@@ -3,18 +3,22 @@ import usuarioReducer from './usuarioReducer';
 import UsuarioContext from './usuarioContext';
 import clienteAxios from '../../config/axios';
 import { 
-    LOGIN_USUARIO, 
-    CREAR_USUARIO, 
-    CREAR_USUARIO_ERROR,
-    OCULTAR_MENSAJE
+    LOGIN_EXITOSO,
+    LOGIN_ERROR,
+    REGISTRO_EXITOSO, 
+    REGISTRO_ERROR,
+    OCULTAR_MENSAJE,
+    USUARIO_AUTENTICADO,
+    CERRAR_SESION
 } from '../../types';
+import tokenAuth from '../../config/token';
 
 const usuarioState=(props)=>{
 
     const initialState={
         usuario:null,
         autenticado:null,
-        token: null,
+        token: typeof window !== 'undefined' ? localStorage.getItem('token'): '',
         mensaje:null
     }
 
@@ -22,17 +26,16 @@ const usuarioState=(props)=>{
 
     //Crea un usuario
     const crearUsuario=async (usuario)=>{
-
         try {
             const respuesta=await clienteAxios.post('/api/users',usuario);
                 dispatch({
-                    type:CREAR_USUARIO_ERROR,
+                    type:REGISTRO_EXITOSO,
                     payload:respuesta.data.msg
                 });
         } catch (error) {
             console.log(error);
             dispatch({
-                type:CREAR_USUARIO_ERROR,
+                type:REGISTRO_ERROR,
                 payload: error.response.data.msg 
             })
         }
@@ -50,14 +53,43 @@ const usuarioState=(props)=>{
     const loginUsuario=async (usuario)=>{
         try {
             const respuesta=await clienteAxios.post('/api/auth',usuario);
-            
+            console.log(respuesta);
             dispatch({
-                type: LOGIN_USUARIO,
-                payload: respuesta.data
+                type: LOGIN_EXITOSO,
+                payload: respuesta.data.token
             })
         } catch (error) {
-            
+            dispatch({
+                type: LOGIN_ERROR,
+                payload:error.response.data.msg
+            })
         }
+    }
+
+    const usuarioAutenticado=async ()=>{
+        const token=localStorage.getItem('token');
+        if(token){
+            tokenAuth(token);
+        }
+
+        try {
+            const respuesta=await clienteAxios.get('api/auth');
+            dispatch({
+                type: USUARIO_AUTENTICADO,
+                payload:respuesta.data.user
+            }) 
+        } catch (error) {
+            dispatch({
+                type: LOGIN_ERROR,
+                payload:error.response.data.msg
+            })
+        }
+    }
+
+    const cerrarSesion=()=>{
+        dispatch({
+            type:CERRAR_SESION
+        })
     }
 
     return(
@@ -66,8 +98,11 @@ const usuarioState=(props)=>{
             mensaje:state.mensaje,
             usuario:state.usuario,
             autenticado:state.autenticado,
+            token:state.token,
             crearUsuario,
-            loginUsuario
+            loginUsuario,
+            usuarioAutenticado,
+            cerrarSesion
         }}
         >
             {props.children}

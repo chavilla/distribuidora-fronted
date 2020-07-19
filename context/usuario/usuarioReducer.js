@@ -1,19 +1,18 @@
-import { LOGIN_USUARIO, 
-        CREAR_USUARIO_ERROR, 
-        CREAR_USUARIO, 
-        OCULTAR_MENSAJE
+import { LOGIN_EXITOSO,
+        LOGIN_ERROR,
+        REGISTRO_EXITOSO, 
+        REGISTRO_ERROR,  
+        OCULTAR_MENSAJE,
+        USUARIO_AUTENTICADO,
+        CERRAR_SESION
 } from '../../types';
 
 export default(state,action)=>{
     switch(action.type){
 
-        case CREAR_USUARIO_ERROR:
-            return{
-                ...state,
-                mensaje:action.payload
-            }
-        
-        case CREAR_USUARIO:
+        case REGISTRO_ERROR:
+        case REGISTRO_EXITOSO:
+        case LOGIN_ERROR:
             return{
                 ...state,
                 mensaje:action.payload
@@ -25,11 +24,24 @@ export default(state,action)=>{
                 mensaje:null
             }
 
-        case LOGIN_USUARIO:
+        case LOGIN_EXITOSO:
             localStorage.setItem('token', action.payload);
             return{
                 ...state,
-                token: action.payload
+                token: action.payload,
+                autenticado:true,
+                mensaje:null
+            }
+        case USUARIO_AUTENTICADO:
+            return{
+                ...state,
+                usuario:action.payload,
+            }
+        case CERRAR_SESION:
+            localStorage.removeItem('token');
+            return{
+                usuario:null,
+                autenticado:null
             }
         default:
             return state;

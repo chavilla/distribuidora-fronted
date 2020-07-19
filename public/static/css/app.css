@@ -37,3 +37,10 @@
       margin-top: -15px;
       color: white;
   }
+
+  .logout{
+      background-color: transparent;
+      color: white;
+      border: none;
+      font-weight:bold;
+  }

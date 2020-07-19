@@ -1,11 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { css } from '@emotion/core';
 import Layout from '../components/layout/Layout';
 import { Formulario, Campo, Boton } from '../components/ui/Formulario';
 import { useFormik } from 'formik';
 import UsuarioContext from '../context/usuario/usuarioContext';
+import { useRouter } from 'next/router';
 
-const Login = (props) => {
+const Login = () => {
+
+  const router=useRouter();
+  const { autenticado,loginUsuario }=useContext(UsuarioContext);
+
+  useEffect(()=>{
+    if(autenticado){
+      router.push('/');
+    }
+  },[autenticado])
 
     const formik=useFormik({
         initialValues:{
@@ -14,7 +24,7 @@ const Login = (props) => {
           password: "",
         },
         onSubmit:(values)=>{
-          console.log(values);
+         loginUsuario(values);
         }
       })
     
@@ -58,7 +68,9 @@ const Login = (props) => {
                 ></input>
               </Campo>
     
-              <Boton>Registrarse</Boton>
+              <Boton
+              type='submit'
+              >Iniciar Sesión</Boton>
             </Formulario>
           </div>
         </Layout>
