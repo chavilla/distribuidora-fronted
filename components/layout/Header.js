@@ -18,7 +18,7 @@ const Header = () => {
                 <div className="container" 
                 >
 
-                    <a href="#!" className="brand-logo">
+                    <a href="/" className="brand-logo">
                     Chaviweb
                     </a>
                     <a href="#" data-target="mobile-demo" className="sidenav-trigger">
@@ -31,9 +31,6 @@ const Header = () => {
                     <li>
                         <Link href="/tienda"><a>Tienda</a></Link>
                     </li>
-                    <li>
-                        <Link href="/registro"><a>Registro</a></Link>
-                    </li>
                     {
                         usuario 
                         ?
@@ -42,10 +39,14 @@ const Header = () => {
                             onClick={()=>cerrarSesion()}
                             >Cerrar sesión</button>
                         :
+                        <>
                         <li>
                             <Link href="/login"><a>Iniciar Sesión</a></Link>
                         </li>
-
+                        <li>
+                            <Link href="/registro"><a>Registro</a></Link>
+                        </li>
+                        </>
                     }
                     </ul>
                 </div>
