@@ -42,17 +42,12 @@ font-weight: bold;
 //fin styled
 
 const Tienda = () => {
-
     const { productos, añadirProductoCarrito ,obtenerProductos}=useContext(productoContext);
 
+    //obtenerProductos();
     useEffect(()=>{
-      obtenerProductos();
-    },[productos])
-
-    const añadirProducto = (producto) => {
-        producto.carrito = true;
-        añadirProductoCarrito(producto);
-      };
+        obtenerProductos();
+    },[])
 
     return ( 
         <Layout>

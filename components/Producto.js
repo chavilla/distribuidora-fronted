@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 import Productocontext from "../context/productos/productoContext";
+import clienteAxios from 'axios';
 
 const Producto = ({ producto }) => {
   //styled components
@@ -33,17 +34,14 @@ const Producto = ({ producto }) => {
   //context de productos
   const { productos, añadirProductoCarrito, obtenerProductos } = useContext(Productocontext);
 
-  useEffect(()=>{
-    obtenerProductos();
-  },[productos])
-
+ 
   const añadirProducto = (producto) => {
     producto.carrito = true;
     añadirProductoCarrito(producto);
 
   };
 
-  const { nombre, precio, carrito } = producto;
+  const { name, price, image } = producto;
 
   return (
     <div
@@ -54,7 +52,7 @@ const Producto = ({ producto }) => {
     >
       <div className="card">
         <div className="card-image">
-          <Img src={`./static/img/${nombre}.jpg`}></Img>
+          <Img src={`http://localhost:4000/api/products/getImage/${image}`} alt={`Imagen ${name}`}></Img>
         </div>
         <div className="card-content">
           <h3
@@ -63,22 +61,17 @@ const Producto = ({ producto }) => {
               font-size: 2rem;
             `}
           >
-            {nombre}
+            {name}
           </h3>
-          <Precio className="center">${precio}</Precio>
+          <Precio className="center">${price}</Precio>
         </div>
         <div className="card-action">
           <BotonProducto
             type="button"
-            className={carrito ? " light-blue accent-3" : null}
             onClick={() => {
               añadirProducto(producto);
-            }}
-          >
-            {carrito ? 
-            (
-              "Añadido al carrito") 
-            :"Añadir al carrito"}
+            }}>
+              Añadir al carrito
           </BotonProducto>
         </div>
       </div>

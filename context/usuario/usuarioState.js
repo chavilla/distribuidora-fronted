@@ -53,7 +53,6 @@ const usuarioState=(props)=>{
     const loginUsuario=async (usuario)=>{
         try {
             const respuesta=await clienteAxios.post('/api/auth',usuario);
-            console.log(respuesta);
             dispatch({
                 type: LOGIN_EXITOSO,
                 payload: respuesta.data.token
