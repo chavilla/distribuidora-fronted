@@ -45,3 +45,7 @@
       font-weight:bold;
       cursor: pointer;
   }
+
+  .m-auto{
+      margin: 0 auto !important;
+  }

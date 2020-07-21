@@ -65,13 +65,13 @@ const Layout = (props) => {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@400;700&display=swap"
           rel="stylesheet"
         />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+       <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
         <link href="/static/css/app.css" rel="stylesheet" />
       </Head>
       <Header />
       <main 
-      className='grey lighten-4'
+      className='bg-gray-200'
       >{props.children}
        <footer
       css={css `

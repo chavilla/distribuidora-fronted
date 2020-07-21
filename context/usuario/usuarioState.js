@@ -33,7 +33,6 @@ const usuarioState=(props)=>{
                     payload:respuesta.data.msg
                 });
         } catch (error) {
-            console.log(error);
             dispatch({
                 type:REGISTRO_ERROR,
                 payload: error.response.data.msg 
@@ -63,6 +62,9 @@ const usuarioState=(props)=>{
                 payload:error.response.data.msg
             })
         }
+        setTimeout(()=>{
+            ocultarMensaje()
+        },3000)
     }
 
     const usuarioAutenticado=async ()=>{
