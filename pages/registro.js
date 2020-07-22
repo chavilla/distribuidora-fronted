@@ -95,7 +95,7 @@ const Registro = (props) => {
           ) : null}
           <button
             type="submit"
-            className="w-full mt-5 py-3 bg-pink-700 text-white"
+            className="w-full mt-10 py-3 bg-orange-500 text-white"
           >
             Registrarse
           </button>

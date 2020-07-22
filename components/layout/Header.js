@@ -14,10 +14,12 @@ const Header = () => {
   }, []);
 
   return (
-    <nav className="flex items-center justify-between flex-wrap  p-6">
+    <nav className="flex items-center bg-orange-500 justify-between flex-wrap lg:pr-5 p-2">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
          <Link href='/'>
-            <a className="text-2xl">Chaviweb</a>
+            <a className="text-2xl text-white">
+              <img className='ml-12 w-16 h-16' src='static/img/logo.png' alt='Logo'></img>  
+            </a>
          </Link>
       </div>
       <div className="block lg:hidden">
@@ -36,34 +38,33 @@ const Header = () => {
         <div className="text-sm">
             <Link href="/">
             <a
-            className="block text-center mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 px-5"
+            className="block text-white text-center mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4 px-5"
           >
               Inicio
           </a>
             </Link>
             <Link href="/tienda">
             <a
-            className="block text-center mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 px-5"
+            className="block text-white text-center mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4 px-5"
           >
               Tienda
           </a>
             </Link>
             { usuario ?
-         <button type='button'
+         <button type='button' className='text-white'
          onClick={()=>cerrarSesion()}
          >Cerrar Sesión</button>
           :
-            
              <>
              <Link href="/registro">
                <a
-               className="block text-center mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 px-5">
+               className="block text-white text-center mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4 px-5">
                  Registro
                </a>
                </Link>
                <Link href="/login">
                    <a
-                   className="block text-center mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4 px-5"
+                   className="block text-white sm:text-white text-center mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 px-5"
                    >
                    Iniciar Sesión
                    </a>

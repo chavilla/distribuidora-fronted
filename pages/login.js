@@ -43,7 +43,7 @@ const Login = () => {
       `}
       >
         <form
-        className='bg-white w-11/12 mx-auto py-6 px-5 mb-12 sm:w-9/12 md:w-1/2 lg:w-1/3 lg:mx-auto lg:py-12 lg:px-8 lg:mb-32'
+        className='bg-white w-11/12 mx-auto py-6 px-5 mb-12 sm:w-9/12 md:w-1/2 lg:w-1/3 lg:mx-auto lg:py-16 lg:px-8 lg:mb-32'
         onSubmit={formik.handleSubmit}
         >
           <h3 className="center uppercase text-2xl text-center md:text-3xl">Introduce tus datos</h3>
@@ -82,8 +82,8 @@ const Login = () => {
               : null
             }
           <button type="submit"
-          className="w-full mt-5 py-3 bg-pink-700 text-white"
-          >Registrarse</button>
+          className="w-full mt-10 py-3 bg-orange-500 text-white"
+          >Iniciar Sesión</button>
           {mensaje ? (<p className="bg-red-500 py-3 px-4 text-white fixed top-0 left-0 ml-5 mt-5">{mensaje}</p>):null}
         </form>
       </div>

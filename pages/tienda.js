@@ -5,42 +5,6 @@ import { css } from '@emotion/core';
 import productoContext from '../context/productos/productoContext';
 import Producto from '../components/Producto';
 
-const Section=styled.section`
-    width:95%;
-    margin: 5rem auto;
-
-
-    @media(min-width:768px){
-        width:90%;
-    }
-`;
-
-//styled components
-const Img = styled.img`
-min-width: 100%;
-max-height: 250px;
-display: block;
-`;
-
-const BotonProducto = styled.button`
-border: none;
-padding: 1rem 2rem;
-background-color: #ed7b25;
-color: white;
-display: block;
-width: 100%;
-margin: 0 auto;
-cursor: pointer;
-`;
-
-const Precio = styled.span`
-display: block;
-text-align: center;
-font-size: 1.7rem;
-font-weight: bold;
-`;
-//fin styled
-
 const Tienda = () => {
     const { productos, añadirProductoCarrito ,obtenerProductos}=useContext(productoContext);
 
@@ -51,26 +15,20 @@ const Tienda = () => {
 
     return ( 
         <Layout>
-            <div className="container" 
-            css={
-                css `padding-top:2rem;`
-            }
-            >
-                <h3 className="center" 
-                css={css `text-transform:uppercase;`
-                }>Tienda</h3>
+            <div className="container mx-auto py-8">
+                <h3 className="text-center text-3xl md:text-5xl uppercase">Tienda</h3>
             </div>
 
-            <Section>
-            <div className="row">
+            <div className='container w-11/12 sm:w-8/12 md:w-11/12 lg:w-10/12 mx-auto'>
+                <div className="grid sm:grid-cols-2 sm:gap-4  md:grid-cols-3 md:gap-8 lg:grid-cols-3 lg:gap-12">
                 { productos.map(producto=>(
                     <Producto
                     key={producto.id}
                     producto={producto}
                     />
                 )) }
+                </div>
             </div>
-            </Section>
 
         </Layout>
      );

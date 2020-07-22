@@ -6,57 +6,6 @@ import Header from "./Header";
 const Layout = (props) => {
   return (
     <>
-      <Global
-        styles={css`
-          :root {
-            --gris: #3d3d3d;
-            --gris2: #6f6f6f;
-            --gris3: #e1e1e1;
-            --naranja: #da552f;
-          }
-
-          html {
-            box-sizing: border-box;
-          }
-          *,
-          *:before,
-          *:after {
-            box-sizing: inherit;
-            margin:0;
-            padding:0;
-          }
-
-          body {
-            
-            line-height: 1.5;
-            font-family: "Inter", sans-serif;
-          }
-
-          h3 {
-            font-family: "Inter", sans-serif;
-            color:#3d3d3d;
-          }
-          ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-          }
-          a {
-            text-decoration: none;
-            color:black !important;
-          }
-
-          li a{
-            color:#ffffff !important;
-            font-weight:700;
-          }
-
-          img {
-            max-height: 500px;
-            max-width: 600px;
-          }
-        `}
-      />
       <Head>
         <title>Distribuidora</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -70,21 +19,13 @@ const Layout = (props) => {
         <link href="/static/css/app.css" rel="stylesheet" />
       </Head>
       <Header />
-      <main 
-      className='bg-gray-200'
-      >{props.children}
-       <footer
-      css={css `
-        background-color:#212121;
-        padding:2rem 0;
-        color:white;
-      `}
-      >
-      <div className="footer-copyright">
-            <div className="container center">
-                © 2014 Copyright Text
-            </div>
+      <main className='bg-gray-200'>{props.children}
+       <footer className='bg-gray-400 py-8 mt-8'>
+        <div className="footer-copyright  mx-auto w-full">
+          <div className="container mx-auto text-center">
+              © 2014 Copyright Text
           </div>
+        </div>
       </footer>
       </main>
     </>
