@@ -18,16 +18,18 @@ const Layout = (props) => {
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
         <link href="/static/css/app.css" rel="stylesheet" />
       </Head>
-      <Header />
-      <main className='bg-gray-200'>{props.children}
-       <footer className='bg-gray-400 py-8 mt-8'>
-        <div className="footer-copyright  mx-auto w-full">
-          <div className="container mx-auto text-center">
-              © 2014 Copyright Text
+      <div className='body flex flex-wrap flex-col'>
+        <Header />
+        <main className='bg-gray-200'>{props.children}
+        </main>
+        <footer className='bg-gray-400 py-8 w-full self-end'>
+          <div className="footer-copyright  mx-auto w-full">
+            <div className="container mx-auto text-center">
+                © 2014 Copyright Text
+            </div>
           </div>
-        </div>
-      </footer>
-      </main>
+        </footer>
+      </div>
     </>
   );
 };

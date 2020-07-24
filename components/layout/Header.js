@@ -14,11 +14,12 @@ const Header = () => {
   }, []);
 
   return (
-    <nav className="flex items-center bg-orange-500 justify-between flex-wrap lg:pr-5 p-2">
+    <div className='bg-orange-500'>
+    <nav className="flex container mx-auto items-center justify-between flex-wrap py-2">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
          <Link href='/'>
             <a className="text-2xl text-white">
-              <img className='ml-12 w-16 h-16' src='static/img/logo.png' alt='Logo'></img>  
+              <img className='w-16 h-16' src='static/img/logo.png' alt='Logo'></img>  
             </a>
          </Link>
       </div>
@@ -83,6 +84,7 @@ const Header = () => {
        
       </div>
     </nav>
+    </div>
   );
 };
 

@@ -49,3 +49,7 @@
   .m-auto{
       margin: 0 auto !important;
   }
+
+  main{
+      min-height: calc(100vh - 168px);
+  }
