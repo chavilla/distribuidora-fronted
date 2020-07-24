@@ -50,6 +50,13 @@ const Header = () => {
               Tienda
           </a>
             </Link>
+            <Link href="/carrito">
+            <a
+            className="block text-white text-center mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4 px-5"
+          >
+              Carrito
+          </a>
+            </Link>
             { usuario ?
          <button type='button' className='text-white'
          onClick={()=>cerrarSesion()}
