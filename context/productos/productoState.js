@@ -12,7 +12,6 @@ const productoState = ({ children }) => {
   const [state, dispatch] = useReducer(productoReducer, initialState);
 
   const obtenerProductos = async () => {
-
     try {
       const respuesta=await clienteAxios.get('api/products');  
       dispatch({
@@ -24,11 +23,18 @@ const productoState = ({ children }) => {
     }
   };
 
-  const añadirProductoCarrito = (producto) => {
+  const añadirProductoCarrito =async (producto) => {
+    const respuesta=await clienteAxios.put(`/api/products/${producto.id}`);
+    if (producto.car===0) {
+      producto.car=1
+    }
+    else{
+      producto.car=0
+    }
     dispatch({
       type: AGREGAR_PRODUCTO_CARRITO,
-      payload: producto,
-    });
+      payload: producto
+    })
   };
 
   return (

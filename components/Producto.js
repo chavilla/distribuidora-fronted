@@ -12,11 +12,12 @@ const Producto = ({ producto }) => {
   );
 
   const añadirProducto = (producto) => {
-    producto.carrito = true;
     añadirProductoCarrito(producto);
+   // obtenerProductos();
+    
   };
 
-  const { name, price, image } = producto;
+  const { name, price, image, car } = producto;
 
   return (
       <div className="bg-white shadow-lg pb-6 mb-10">
@@ -38,7 +39,7 @@ const Producto = ({ producto }) => {
               añadirProducto(producto);
             }}
           >
-            Añadir al carrito
+            { car ===0 ? ' Añadir al carrito' : 'Añadido al carrito' } 
           </button>
         </div>
       </div>
