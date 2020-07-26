@@ -46,27 +46,27 @@ const Header = () => {
             </Link>
             <Link href="/tienda">
             <a
-            className="block text-white text-center mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4 px-5"
+            className="block text-white text-center mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 px-5"
           >
               Tienda
           </a>
             </Link>
             <Link href="/carrito">
             <a
-            className="block text-white text-center mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4 px-5"
+            className="block text-white text-center mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 px-5"
           >
               Carrito
           </a>
             </Link>
             { usuario ?
-         <button type='button' className='text-white'
+         <button type='button' className='text-white text-2xl'
          onClick={()=>cerrarSesion()}
          >Cerrar Sesión</button>
           :
              <>
              <Link href="/registro">
                <a
-               className="block text-white text-center mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4 px-5">
+               className="block text-white text-center mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 px-5">
                  Registro
                </a>
                </Link>

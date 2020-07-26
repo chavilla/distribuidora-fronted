@@ -1,20 +1,36 @@
 import { useReducer } from 'react';
 import CarritoContext from './carritoContext';
 import carritoReducer from './carritoReducer';
-import { AGREGAR_PRODUCTO_CARRITO } from '../../types';
+import clienteAxios from '../../config/axios';
+import { OBTENER_CARRITO } from '../../types';
 
 const carritoState = (props) => {
 
     const initialState={
-        productos:[]
+        productosCarrito:[]
     }
 
     const [state,dispatch]=useReducer(carritoReducer,initialState);
 
+    //Zona de funciones
+    const obtenerCarrito=async ()=>{
+        try {
+            const respuesta=await clienteAxios.get('api/products/car');
+            dispatch({
+                type:OBTENER_CARRITO,
+                payload: respuesta.data.products
+            })
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return ( 
         <CarritoContext.Provider
         value={{
-            productos:state.productos
+            productosCarrito:state.productosCarrito,
+            obtenerCarrito
         }}
         >
 
