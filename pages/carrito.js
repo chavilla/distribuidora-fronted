@@ -36,8 +36,8 @@ const Carrito = () => {
                             producto={producto}
                             />
                         ))}
-                        <div className='py-5 bg-white mb-10'>
-                            <button type='button bg-orange-500 text-white'>Actualizar carrito</button>
+                        <div className='pt-5 pb-10 sm:mb-10 md:flex justify-end md:py-10'>
+                        <button type='button' className='bg-orange-500 text-white w-full py-3 md:w-4/12'>Actualizar carrito</button>
                         </div>
                     </div>
                 ) 
