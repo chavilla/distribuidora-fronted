@@ -37,7 +37,7 @@ const Carrito = () => {
                             />
                         ))}
                         <div className='pt-5 pb-10 sm:mb-10 md:flex justify-end md:py-10'>
-                        <button type='button' className='bg-orange-500 text-white w-full py-3 md:w-4/12'>Actualizar carrito</button>
+                        <button type='button' className='bg-orange-500 text-white w-full py-3 md:w-4/12'>Finalizar Compra</button>
                         </div>
                     </div>
                 ) 
