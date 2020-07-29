@@ -59,9 +59,9 @@ const Header = () => {
           </a>
             </Link>
             { usuario ?
-         <button type='button' className='text-white text-2xl'
-         onClick={()=>cerrarSesion()}
-         >Cerrar Sesión</button>
+              <button type='button' className='text-white text-2xl'
+              onClick={()=>cerrarSesion()}
+              >Cerrar Sesión</button>
           :
              <>
              <Link href="/registro">
