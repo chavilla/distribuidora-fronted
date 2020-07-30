@@ -1,13 +1,13 @@
 import React, {useContext, useEffect} from 'react';
 import Layout from '../components/layout/Layout';
-import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import productoContext from '../context/productos/productoContext';
+import usuarioContext from '../context/usuario/usuarioContext';
 import Producto from '../components/Producto';
 
 const Tienda = () => {
     const { productos, añadirProductoCarrito ,obtenerProductos}=useContext(productoContext);
-
+    const { usuario }=useContext(usuarioContext);
     //obtenerProductos();
     useEffect(()=>{
         obtenerProductos();

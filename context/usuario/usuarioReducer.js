@@ -42,7 +42,9 @@ export default(state,action)=>{
             localStorage.removeItem('token');
             return{
                 usuario:null,
-                autenticado:null
+                autenticado:null,
+                token:null,
+                mensaje:null
             }
         default:
             return state;
