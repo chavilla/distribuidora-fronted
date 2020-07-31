@@ -5,17 +5,31 @@ import UsuarioContext from "../../context/usuario/usuarioContext";
 const Header = () => {
   
   //Zona de leer context
-  const { usuario, usuarioAutenticado, cerrarSesion } = useContext(
+  const { usuario,logout, usuarioAutenticado, cerrarSesion } = useContext(
     UsuarioContext
   );
 
+  const [admin,setAdmin]=useState(false);
 
   //Ejecutamos usuario autenticado cuando cargue la página
   useEffect(() => {
-    usuarioAutenticado();
+    if(!logout){
+      usuarioAutenticado(); 
+    }
   }, []);
 
-  
+  useEffect(()=>{
+    if (usuario) {
+      if (usuario.role==='admin') {
+        setAdmin(true);
+      } 
+    }
+      else{
+        setAdmin(false);
+      }
+  },[usuario]);
+
+
   return (
     <div className="bg-orange-500">
       <nav className="flex container mx-auto items-center justify-between flex-wrap py-2">
@@ -54,6 +68,16 @@ const Header = () => {
                 Tienda
               </a>
             </Link>
+            { admin 
+            ?
+            <Link href='/nuevoProducto'>
+              <a className='block text-white text-center mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 px-5'>
+                Nuevo Producto
+              </a>
+            </Link> 
+            : 
+            null
+            }
             <Link href="/carrito">
               <a className="block text-white text-center mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 px-5">
                 Carrito

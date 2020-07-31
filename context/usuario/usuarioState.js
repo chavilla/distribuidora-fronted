@@ -19,7 +19,8 @@ const usuarioState=(props)=>{
         usuario:null,
         autenticado:null,
         token: typeof window !== 'undefined' ? localStorage.getItem('token'): '',
-        mensaje:null
+        mensaje:null,
+        logout:null,
     }
 
     const [state,dispatch]=useReducer(usuarioReducer,initialState);
@@ -100,6 +101,7 @@ const usuarioState=(props)=>{
             usuario:state.usuario,
             autenticado:state.autenticado,
             token:state.token,
+            logout:state.logout,
             crearUsuario,
             loginUsuario,
             usuarioAutenticado,

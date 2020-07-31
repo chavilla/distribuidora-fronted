@@ -30,7 +30,8 @@ export default(state,action)=>{
                 ...state,
                 token: action.payload,
                 autenticado:true,
-                mensaje:null
+                mensaje:null,
+                logout:null
             }
         case USUARIO_AUTENTICADO:
             return{
@@ -41,6 +42,8 @@ export default(state,action)=>{
         case CERRAR_SESION:
             localStorage.removeItem('token');
             return{
+                ...state,
+                logout:true,
                 usuario:null,
                 autenticado:null,
                 token:null,
