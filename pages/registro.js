@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { css } from "@emotion/core";
 import Layout from "../components/layout/Layout";
 import UsuarioContext from "../context/usuario/usuarioContext";
-import { Formulario, Campo, Boton } from "../components/ui/Formulario";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 

@@ -16,8 +16,9 @@ const Producto = ({ producto }) => {
 
   return (
       <div className="bg-white shadow-lg pb-6 mb-10">
-        <div className="">
+        <div className="border w-full">
           <img
+            className="w:11/12"
             src={`${process.env.backend}/api/products/getImage/${image}`}
             alt={`Imagen ${name}`}
           ></img>
