@@ -15,28 +15,39 @@ const Producto = ({ producto }) => {
   const { name, price, image, car } = producto;
 
   return (
-      <div className="bg-white shadow-lg pb-6 mb-10">
-        <div className="border w-full">
+      <div className="bg-white pt-6 shadow-lg pb-6 mb-10">
+        <div className="w-full">
           <img
-            className="w:11/12"
+            className="w:8/12 h-32 mx-auto"
             src={`${process.env.backend}/api/products/getImage/${image}`}
             alt={`Imagen ${name}`}
           ></img>
         </div>
         <div className="py-5">
           <h3 className="text-center text-2xl">{name}</h3>
-          <p className="text-center text-lg mt-5">${price}</p>
+          <p className="text-center text-3xl font-bold text-orange-500 mt-5">${price}</p>
         </div>
         <div className="w-10/12 mx-auto">
-          <button
+          { car===0 
+          ?
+          (
+            <button
             className="bg-orange-500 text-white py-4 w-full"
             type="button"
             onClick={() => {
               añadirProducto(producto);
             }}
-          >
-            { car ===0 ? ' Añadir al carrito' : 'Añadido al carrito' } 
-          </button>
+          >Añadir al carrito</button>  
+          ) 
+          : 
+          <button
+            className="bg-orange-600 text-white py-4 w-full"
+            type="button"
+            onClick={() => {
+              añadirProducto(producto);
+            }}
+          >Añadido al carrito</button>
+          }
         </div>
       </div>
 
