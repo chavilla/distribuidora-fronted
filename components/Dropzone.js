@@ -1,14 +1,22 @@
-import React, {useCallback, useContext } from 'react';
+import React, {useCallback, useState, useContext, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import  productoContext from '../context/productos/productoContext';
 
 const Dropzone = () => {
 
     const { establecerImagen }=useContext(productoContext)
+    const [imagenExito, setImagenExito]=useState(false);
 
     //onDropAccepted
     const onDropAccepted=useCallback(async(acceptedFiles)=>{
-        establecerImagen(acceptedFiles[0]);
+        console.log(acceptedFiles[0].type);
+        if (acceptedFiles[0].type ==='image/jpeg' || acceptedFiles[0].type ==='image/jpg' || acceptedFiles[0].type ==='image/png') {
+            establecerImagen(acceptedFiles[0]);
+            setImagenExito(false);     
+        }
+        else{
+            setImagenExito(true);
+        }       
     });
 
     //onDropRejected
@@ -25,12 +33,13 @@ const Dropzone = () => {
         </li>
     ));
 
-    return ( 
+    return (
+        <> 
         <div className="md:flex border-dashed border-gray-400 border-2 px-4  w-full text-gray-500 text-center items-center">
             
             <div {...getRootProps({className: 'dropzone w-full py-12'})}>
                 <input className="h-100" { ...getInputProps()}></input>
-                {archivos.length>0 
+                {archivos.length>0 && !imagenExito
                 ?
                 <ul>{archivos}</ul> 
                 :
@@ -42,6 +51,14 @@ const Dropzone = () => {
                 }
             </div>
         </div>
+         {imagenExito 
+            ?
+            <> 
+            <p className="bg-red-500 text-white text-center py-4">El tipo de archivo no es válido</p>
+            </>
+            :null
+        }
+        </>
      );
 }
  
