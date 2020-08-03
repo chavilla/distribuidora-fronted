@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import Layout from "../components/layout/Layout";
+import Dropzone from "../components/Dropzone";
 import UsuarioContext from "../context/usuario/usuarioContext";
 import ProductoContext from "../context/productos/productoContext";
 import { useRouter } from "next/router";
@@ -10,7 +11,7 @@ const NuevoProducto = () => {
 
 //Zona de leer context o hooks
 const { autenticado } = useContext(UsuarioContext);
-const { establecerImagen, guardarProducto }=useContext(ProductoContext);
+const { imagen, guardarProducto }=useContext(ProductoContext);
 const router=useRouter();
 
 //formik para validacion del formulario
@@ -87,23 +88,26 @@ const formik = useFormik({
                     <p>{formik.errors.stock}</p>
                   </div>
                 ) : null}
-                 <input
+            </div>
+            <div className="field mt-8">
+                <Dropzone/>
+            </div>
+           {/*  <input
                 type="file"
                 placeholder="Subir Imagen"
-                className="border py-2 px-3 mx-auto mt-8 my w-full rounded shadow-md"
+                className="border-4 border-dashed border-gray-400 appearance-none py-2 px-3 mx-auto mt-8 my w-full rounded shadow-md"
                 name="file"
                 type="file"
                 onChange={e=>establecerImagen(e.target.files)}
-              ></input>
-            </div>
-            <div className="">
+              ></input> */}
+          
             <button
                 type="submit"
                 className="w-full mt-10 py-3 bg-orange-500 text-white"
+                disabled={imagen ? false:true}
               >
                 Crear Producto
               </button>
-            </div>
         </form>
       </div>
     </Layout>

@@ -3,10 +3,12 @@ export  const uploadImage=(url, files, name)=>{
         var formData=new FormData();
         var xhr=new XMLHttpRequest();
 
-        for (let index = 0; index < files.length; index++) {
+        formData.append(name, files, files.name);
+
+       /*  for (let index = 0; index < files.length; index++) {
             formData.append(name,files[index],files[index].name); 
         }
-
+ */
         xhr.onreadystatechange=()=>{
             if (xhr.readyState==4){
                 if (xhr.status==200){

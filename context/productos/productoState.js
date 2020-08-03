@@ -30,13 +30,13 @@ const productoState = ({ children }) => {
       const respuesta=await clienteAxios.post('api/products', producto);
       const id=respuesta.data.productStored.id;
       const upload=await uploadImage(`${process.env.backend}/api/products/image/${id}`,state.imagen,'image');
-      console.log(upload);
     } catch (error) {
       console.log(error);
     }
   }
 
   const establecerImagen=(imagen)=>{
+
     dispatch({
       type:ESTABLECER_IMAGEN,
       payload:imagen
