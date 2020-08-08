@@ -1,14 +1,15 @@
 import { useReducer } from "react";
 import productoContext from "./productoContext";
 import productoReducer from "./productoReducer";
-import { OBTENER_PRODUCTOS, AGREGAR_PRODUCTO_CARRITO, ESTABLECER_IMAGEN } from "../../types/";
+import { OBTENER_PRODUCTOS, AGREGAR_PRODUCTO_CARRITO, ESTABLECER_IMAGEN, 
+  AGREGAR_PRODUCTO_ERROR, AGREGADO_FALSE } from "../../types/";
 import clienteAxios from '../../config/axios';
 import { uploadImage } from "../../helper/uploadImage";
 
 const productoState = ({ children }) => {
   const initialState = {
     productos: [],
-    agregado: false,
+    errorAgregado: false,
     imagen:null
   };
   const [state, dispatch] = useReducer(productoReducer, initialState);
@@ -43,30 +44,53 @@ const productoState = ({ children }) => {
     })
   }
 
-  const añadirProductoCarrito =async (producto) => {
-    const respuesta=await clienteAxios.put(`/api/products/${producto.id}`);
+  const agregarProductoCarrito =async (producto,usuario) => {
+
     if (producto.car===0) {
-      producto.car=1
+        producto.car=1
+      }
+      else{
+        producto.car=0
+      }
+
+    const data={
+      productId: producto.id,
+      userId:usuario
     }
-    else{
-      producto.car=0
+
+    try {
+      const respuesta=await clienteAxios.post(`/api/car/`,data);
+      dispatch({
+        type: AGREGAR_PRODUCTO_CARRITO,
+        payload:producto,
+      
+      })   
+    } catch (error) {
+      dispatch({
+        type: AGREGAR_PRODUCTO_ERROR,
+        payload: error.response.data.msg 
+      })
     }
-    dispatch({
-      type: AGREGAR_PRODUCTO_CARRITO,
-      payload: producto
-    })
   };
+
+  const agregadoFalse=()=>{
+    dispatch({
+        type: AGREGADO_FALSE
+    })
+}
+ 
 
   return (
     <productoContext.Provider
       value={{
         productos: state.productos,
         imagen:state.imagen,
-        agregado: state.agregado,
+        errorAgregado: state.errorAgregado,
         obtenerProductos,
-        añadirProductoCarrito,
         guardarProducto,
-        establecerImagen
+        establecerImagen,
+        agregarProductoCarrito,
+        agregadoFalse
       }}
     >
       {children}

@@ -2,16 +2,23 @@ import React, { useContext, useEffect } from 'react';
 import Layout from '../components/layout/Layout';
 import CarritoProducto from '../components/CarritoProducto';
 import CarritoContext from '../context/carrito/carritoContext';
+import UsuarioContext from '../context/usuario/usuarioContext';
 import Link from 'next/link';
 
 const Carrito = () => {
 
     //Zona de leer el context
+    const { usuario  }=useContext(UsuarioContext);
     const { productosCarrito, obtenerCarrito }=useContext(CarritoContext);
 
     useEffect(()=>{
-        obtenerCarrito();
-    },[])
+        if (usuario) {
+            obtenerCarrito(usuario.id);   
+        }
+        else{
+            obtenerCarrito();
+        }
+    },[usuario]);
 
     return ( 
         <Layout>
@@ -32,7 +39,7 @@ const Carrito = () => {
                     <div className='carrito '>
                         {productosCarrito.map(producto=>(
                             <CarritoProducto
-                            key={producto.id}
+                            key={producto.idCar}
                             producto={producto}
                             />
                         ))}

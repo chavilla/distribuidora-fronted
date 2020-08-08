@@ -1,9 +1,16 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Head from "next/head";
-import { Global, css } from "@emotion/core";
 import Header from "./Header";
 
 const Layout = (props) => {
+
+  const [year,setYear]=useState('');
+
+  useEffect(()=>{
+    const date=new Date();
+    setYear(date.getFullYear());
+  },[])
+
   return (
     <>
       <Head>
@@ -25,7 +32,7 @@ const Layout = (props) => {
         <footer className='bg-gray-400 py-8 w-full self-end'>
           <div className="footer-copyright  mx-auto w-full">
             <div className="container mx-auto text-center">
-                © 2014 Copyright Text
+                © { year } Copyright Text
             </div>
           </div>
         </footer>

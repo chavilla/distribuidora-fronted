@@ -1,7 +1,9 @@
 import {
     OBTENER_PRODUCTOS,
     AGREGAR_PRODUCTO_CARRITO,
-    ESTABLECER_IMAGEN
+    ESTABLECER_IMAGEN,
+    AGREGAR_PRODUCTO_ERROR,
+    AGREGADO_FALSE
 } from '../../types/';
 
 export default (state,action)=>{
@@ -16,10 +18,20 @@ export default (state,action)=>{
                 ...state,
                 productos: state.productos.map(producto=> producto.id === action.payload.id ? action.payload : producto ),
             }
+        case AGREGAR_PRODUCTO_ERROR:
+            return{
+                ...state,
+                errorAgregado: true
+            }
         case ESTABLECER_IMAGEN:
             return{
                 ...state,
                 imagen:action.payload
+            }
+        case AGREGADO_FALSE:
+            return{
+                ...state,
+                errorAgregado:false
             }
         default:{
             return state;

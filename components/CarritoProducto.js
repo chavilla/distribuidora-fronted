@@ -24,7 +24,7 @@ const CarritoProducto = ({ producto }) => {
       setError(false);
     }
 
-  },[cantidad])
+  },[cantidad]);
 
   return (
     <>

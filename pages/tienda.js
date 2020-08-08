@@ -6,12 +6,19 @@ import usuarioContext from '../context/usuario/usuarioContext';
 import Producto from '../components/Producto';
 
 const Tienda = () => {
-    const { productos, añadirProductoCarrito ,obtenerProductos}=useContext(productoContext);
+    const { errorAgregado, agregadoFalse,productos,obtenerProductos}=useContext(productoContext);
     const { usuario }=useContext(usuarioContext);
     //obtenerProductos();
     useEffect(()=>{
         obtenerProductos();
-    },[])
+    },[]);
+
+    useEffect(()=>{
+        if (errorAgregado) {
+            alert('Ya has agregado este producto antes');
+            agregadoFalse();
+        }
+    },[errorAgregado])
 
     return ( 
         <Layout>
