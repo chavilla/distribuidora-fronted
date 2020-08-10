@@ -1,5 +1,5 @@
 import { OBTENER_CARRITO, AGREGAR_PRODUCTO_CARRITO, AGREGAR_PRODUCTO_ERROR,
-AGREGADO_FALSE, ESTABLECE_ORDEN } from '../../types';
+AGREGADO_FALSE, ESTABLECE_ORDEN, VENTA_EXITO } from '../../types';
 
 export default (state,action)=>{
     switch(action.type){
@@ -29,6 +29,11 @@ export default (state,action)=>{
             return{
                 ...state,
                 order: state.order.map(order=> order.id===action.payload.id ? action.payload : order )
+            }
+        case VENTA_EXITO:
+            return{
+                ...state,
+                mensaje: `Producto comprado exitosamente. ID del pago: ${action.payload}`
             }
         default:
             return state;

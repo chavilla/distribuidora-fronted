@@ -8,9 +8,13 @@ import Paypal from '../components/PaypalCheckoutButton';
 
 const Carrito = () => {
 
+    //---------------------Zona de state local----------------------------------------//
+    const [count,setCount]=useState(0);
+    const [msj, setMsj]=useState(false);
+
     //---------------------Zona de leer el context-------------------------------------//
     const { usuario  }=useContext(UsuarioContext);
-    const {  order, productosCarrito, obtenerCarrito }=useContext(CarritoContext);
+    const {  order, mensaje,productosCarrito, obtenerCarrito }=useContext(CarritoContext);
 
     //------------------------Zona de useEffect----------------------------------------//
     useEffect(()=>{
@@ -23,21 +27,27 @@ const Carrito = () => {
 
     },[usuario]);
 
+    useEffect(()=>{
+        if (mensaje) {
+            setMsj(true);
+        }
+    },[mensaje])
+
 
     //-----------------Zona para llevar la orden a paypal-------------------------------//
-    
-    //sumamos los precios de los item
-    let priceSum=order.reduce((total,ord)=> total+ ord.subtotal,0);
+      //sumamos los precios de los item
+      let priceSum=order.reduce((total,ord)=> total+ ord.subtotal,0);
 
-    //definir order
-    const ordered={
-        customer: '123455',
-        total: priceSum,
-        items: order
-    }
+      //definir order
+      const ordered={
+          total: priceSum,
+          items: order
+      }
+
 
     return ( 
         <Layout>
+             { msj ? <p className='fixed top-1/2 text-white bg-blue-500 p-5'>{mensaje}</p> : null}
              <div className="container mx-auto py-8">
                 <h3 className="text-center text-3xl md:text-5xl uppercase">Carrito</h3>
             </div>
@@ -55,14 +65,17 @@ const Carrito = () => {
                     <div className='carrito '>
                         {productosCarrito.map(producto=>(
                             <CarritoProducto
+                            setCount={setCount}
                             key={producto.productId}
                             producto={producto}
                             />
                         ))}
                         <div className='pt-5 pb-10 sm:mb-10 md:flex justify-end md:py-10'>
-                        <Paypal
-                        order={ordered}
-                        />
+                        {count<1 ? null :
+                         <Paypal
+                         order={ordered}
+                         />
+                        }
                         </div>
                     </div>
                 ) 

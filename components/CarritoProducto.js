@@ -1,12 +1,14 @@
 import React, { useContext, useState, useEffect } from "react";
 import CarritoContext from "../context/carrito/carritoContext";
+import UsuarioContext from "../context/usuario/usuarioContext";
 
-const CarritoProducto = ({ producto }) => {
+const CarritoProducto = ({ producto, setCount }) => {
  
   //Zona de leer el context
   const { updateOrder }=useContext(CarritoContext);
+  const { usuario }=useContext(UsuarioContext);
 
-  //Extraer las propiedades del producto
+  //Extraer las propiedades del producto y luego del usuario
   const { productId,name, price, stock, image } = producto;
 
   // local para el subtotal
@@ -15,6 +17,7 @@ const CarritoProducto = ({ producto }) => {
   const [error, setError]=useState(false);
 
   useEffect(()=>{
+
     if(cantidad && price){
       setSubtotal(cantidad*price);
     }
@@ -23,10 +26,14 @@ const CarritoProducto = ({ producto }) => {
       setError(true);
     }else{
       setError(false);
-      updateOrder(productId,name,cantidad,cantidad*price);
+      if (usuario) {
+        updateOrder(productId,name,cantidad,cantidad*price,usuario.id); 
+      }
     }
 
-  },[cantidad,producto]);
+    setCount(cantidad);
+
+  },[cantidad,producto,usuario]);
 
 
 
