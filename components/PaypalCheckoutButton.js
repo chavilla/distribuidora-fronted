@@ -3,7 +3,10 @@ import PaypalExpressBtn from "react-paypal-express-checkout";
 
 const myApp=({order})=> {
 
-    //console.log(order);
+    let array_name=[];
+    order.items.map(item=>{
+      array_name.push(item.name);
+    });
 
     const paypalConf = {
       currency: 'USD',
@@ -29,10 +32,10 @@ const myApp=({order})=> {
               total: parseInt(order.total),
               currency: paypalConf.currency,
             },
-            description: order.name,
+            description: array_name.toString(),
             custom: order.customer || '',
             item_list: {
-              items: order.items
+              items: [order.items]
             },
           },
         ],
@@ -77,9 +80,11 @@ const myApp=({order})=> {
     return (
       <PaypalExpressBtn
         env={paypalConf.env}
+        payment={(data, actions) => payment(data, actions)}
         client={paypalConf.client}
         currency={paypalConf.currency}
         total={parseInt(order.total)}
+        commit
         onError={onError}
         onSuccess={onSuccess}
         onCancel={onCancel}

@@ -24,7 +24,6 @@ const carritoState = (props) => {
   const obtenerCarrito = async (usuarioId) => {
     try {
       const respuesta = await clienteAxios.get(`api/car/${usuarioId}`);
-
       // Editar los productos del carrito para hacer un state de ordenes
       const data_edit=respuesta.data.products_car;
       let order_empty=[]
@@ -80,9 +79,10 @@ const carritoState = (props) => {
     }
   };
 
-  const updateOrder=(id,count,subtotal)=>{
+  const updateOrder=(id,name,count,subtotal)=>{
     const orderUpdated={
       id,
+      name,
       count,
       subtotal
     }

@@ -23,7 +23,7 @@ const CarritoProducto = ({ producto }) => {
       setError(true);
     }else{
       setError(false);
-      updateOrder(productId,cantidad,cantidad*price);
+      updateOrder(productId,name,cantidad,cantidad*price);
     }
 
   },[cantidad,producto]);

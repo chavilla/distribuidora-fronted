@@ -8,11 +8,11 @@ import Paypal from '../components/PaypalCheckoutButton';
 
 const Carrito = () => {
 
-    //Zona de leer el context
+    //---------------------Zona de leer el context-------------------------------------//
     const { usuario  }=useContext(UsuarioContext);
-    const {  setOrder, productosCarrito, obtenerCarrito }=useContext(CarritoContext);
+    const {  order, productosCarrito, obtenerCarrito }=useContext(CarritoContext);
 
-    //Zona de useEffect
+    //------------------------Zona de useEffect----------------------------------------//
     useEffect(()=>{
         if (usuario) {
             obtenerCarrito(usuario.id);
@@ -24,17 +24,16 @@ const Carrito = () => {
     },[usuario]);
 
 
+    //-----------------Zona para llevar la orden a paypal-------------------------------//
+    
+    //sumamos los precios de los item
+    let priceSum=order.reduce((total,ord)=> total+ ord.subtotal,0);
+
     //definir order
-    const order={
+    const ordered={
         customer: '123455',
-        total: '35.00',
-        items:[{
-            sku: '112',
-            name:'Lámpara',
-            price: '35.00',
-            quantity: 1,
-            currency: 'USD'
-        }]
+        total: priceSum,
+        items: order
     }
 
     return ( 
@@ -62,7 +61,7 @@ const Carrito = () => {
                         ))}
                         <div className='pt-5 pb-10 sm:mb-10 md:flex justify-end md:py-10'>
                         <Paypal
-                        order={order}
+                        order={ordered}
                         />
                         </div>
                     </div>
