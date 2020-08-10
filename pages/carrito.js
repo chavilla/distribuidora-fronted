@@ -1,24 +1,41 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Layout from '../components/layout/Layout';
 import CarritoProducto from '../components/CarritoProducto';
 import CarritoContext from '../context/carrito/carritoContext';
 import UsuarioContext from '../context/usuario/usuarioContext';
 import Link from 'next/link';
+import Paypal from '../components/PaypalCheckoutButton';
 
 const Carrito = () => {
 
     //Zona de leer el context
     const { usuario  }=useContext(UsuarioContext);
-    const { productosCarrito, obtenerCarrito }=useContext(CarritoContext);
+    const {  setOrder, productosCarrito, obtenerCarrito }=useContext(CarritoContext);
 
+    //Zona de useEffect
     useEffect(()=>{
         if (usuario) {
-            obtenerCarrito(usuario.id);   
+            obtenerCarrito(usuario.id);
         }
         else{
             obtenerCarrito();
         }
+
     },[usuario]);
+
+
+    //definir order
+    const order={
+        customer: '123455',
+        total: '35.00',
+        items:[{
+            sku: '112',
+            name:'Lámpara',
+            price: '35.00',
+            quantity: 1,
+            currency: 'USD'
+        }]
+    }
 
     return ( 
         <Layout>
@@ -39,12 +56,14 @@ const Carrito = () => {
                     <div className='carrito '>
                         {productosCarrito.map(producto=>(
                             <CarritoProducto
-                            key={producto.idCar}
+                            key={producto.productId}
                             producto={producto}
                             />
                         ))}
                         <div className='pt-5 pb-10 sm:mb-10 md:flex justify-end md:py-10'>
-                        <button type='button' className='bg-orange-500 text-white w-full py-3 md:w-4/12'>Finalizar Compra</button>
+                        <Paypal
+                        order={order}
+                        />
                         </div>
                     </div>
                 ) 

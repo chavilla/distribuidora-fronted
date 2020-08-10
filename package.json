@@ -15,9 +15,11 @@
     "babel-plugin-emotion": "^10.0.33",
     "formik": "^2.1.5",
     "next": "9.4.4",
+    "paypal-checkout": "^4.0.315",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-dropzone": "^11.0.2",
+    "react-paypal-express-checkout": "^1.0.5",
     "yup": "^0.29.1"
   }
 }
