@@ -52,4 +52,23 @@
 
   main{
       min-height: calc(100vh - 168px);
+      border-radius: 10px;
+      background: #ddd;
+  }
+
+  .layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 680px;
+    margin: auto;
+    padding: 1rem;
+    background: #eaeaea;
+    overflow: hidden;
+  }
+
+  button:hover{
+    background-color: rgba(245, 93, 22, 0.8) !important;
+    transform: scale(1.1);
+    transition: all .1s ease-in;
   }

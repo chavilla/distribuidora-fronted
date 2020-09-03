@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import UsuarioContext from "../../context/usuario/usuarioContext";
+import { toggle } from "./toggle";
 
 const Header = () => {
   
@@ -9,10 +10,13 @@ const Header = () => {
     UsuarioContext
   );
 
+  //Zonas para leer los states
   const [admin,setAdmin]=useState(false);
+  const [activeMenu,setActiveMenu]=useState(false);
 
   //Ejecutamos usuario autenticado cuando cargue la página
   useEffect(() => {
+    toggle();
     if(!logout){
       usuarioAutenticado(); 
     }
@@ -45,7 +49,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="block lg:hidden">
-          <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+          <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white" id="btnToggle" onClick={e=>setActiveMenu(!activeMenu)}>
             <svg
               className="fill-current h-3 w-3"
               viewBox="0 0 20 20"
@@ -56,7 +60,8 @@ const Header = () => {
             </svg>
           </button>
         </div>
-        <div className="w-full block flex-grow lg:flex lg:justify-end lg:items-center lg:w-auto ">
+       
+        <div className="w-full block flex-grow lg:flex lg:justify-end lg:items-center lg:w-auto hidden" id="submenu">
           <div className="text-sm">
             <Link href="/">
               <a className="block text-white text-center mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4 px-5">

@@ -1,6 +1,5 @@
 import React, {useContext, useEffect} from 'react';
 import Layout from '../components/layout/Layout';
-import { css } from '@emotion/core';
 import productoContext from '../context/productos/productoContext';
 import usuarioContext from '../context/usuario/usuarioContext';
 import Producto from '../components/Producto';

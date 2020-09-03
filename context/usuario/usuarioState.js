@@ -29,6 +29,7 @@ const usuarioState=(props)=>{
     const crearUsuario=async (usuario)=>{
         try {
             const respuesta=await clienteAxios.post('/api/users',usuario);
+            console.log(respuesta);
                 dispatch({
                     type:REGISTRO_EXITOSO,
                     payload:respuesta.data.msg

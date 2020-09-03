@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Productocontext from "../context/productos/productoContext";
 import Usuariocontext from "../context/usuario/usuarioContext";
 import Link from "next/link";
@@ -40,9 +40,10 @@ const Producto = ({ producto }) => {
         { usuario 
         ?
         <div className="w-10/12 mx-auto">
-          { car===0
+          { car!==0
           ?
           (<>
+           
             <button
             className="bg-orange-500 text-white py-4 w-full"
             type="button"
@@ -50,7 +51,7 @@ const Producto = ({ producto }) => {
               añadirProducto(producto);
             }}
           >Añadir al carrito</button>
-         
+
           </>  
           ) 
           : 
