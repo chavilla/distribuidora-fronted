@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import UsuarioContext from "../../context/usuario/usuarioContext";
-import { toggle } from "./toggle";
+import theme from '../themeConfig';
+import { ThemeProvider, AppBar, Toolbar, IconButton, Typography, Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import DehazeIcon from '@material-ui/icons/Dehaze';
 
-const Header = () => {
+const Header = ({handleDrawerOpen}) => {
   
   //Zona de leer context
   const { usuario,logout, usuarioAutenticado, cerrarSesion } = useContext(
@@ -12,11 +15,9 @@ const Header = () => {
 
   //Zonas para leer los states
   const [admin,setAdmin]=useState(false);
-  const [activeMenu,setActiveMenu]=useState(false);
 
   //Ejecutamos usuario autenticado cuando cargue la página
   useEffect(() => {
-    toggle();
     if(!logout){
       usuarioAutenticado(); 
     }
@@ -33,87 +34,74 @@ const Header = () => {
       }
   },[usuario]);
 
+  const useStyles=makeStyles(theme=>({
+    offset: theme.mixins.toolbar,
+    menuButton:{
+        marginRight: theme.spacing(2),
+        [theme.breakpoints.up('sm')]:{
+            display: 'none'
+        }
+    },
+    ancho:{
+        backgroundColor: "#fe4918 !important"
+    },
+
+    title:{
+        flexGrow:1
+    },
+
+    btnText:{
+        color: "#ffffff"
+    },
+    appBar:{
+        [theme.breakpoints.up('sm')]:{
+        width: `calc(100% - ${240}px)`,
+        marginLeft: 240
+        }
+    },
+    hide: {
+        display: 'none',
+      } 
+  }));
+
+  const classes=useStyles();
 
   return (
-    <div className="bg-orange-500">
-      <nav className="flex container mx-auto items-center justify-between flex-wrap py-2">
-        <div className="flex items-center flex-shrink-0 text-white mr-6">
-          <Link href="/">
-            <a className="text-2xl text-white">
-              <img
-                className="w-16 h-16"
-                src="static/img/logo.png"
-                alt="Logo"
-              ></img>
-            </a>
-          </Link>
-        </div>
-        <div className="block lg:hidden">
-          <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white" id="btnToggle" onClick={e=>setActiveMenu(!activeMenu)}>
-            <svg
-              className="fill-current h-3 w-3"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
+    <ThemeProvider theme={theme}>
+      <AppBar>
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu" 
+            className={classes.menuButton}
+            onClick={ handleDrawerOpen }
+          >
+            <DehazeIcon/>
+          </IconButton>
+          <Typography variant="h4" className={classes.title}>Chaviweb</Typography>
+          {usuario ? (
+             <Button variant="outlined" color="primary" className={classes.btnText}
+             onClick={() => cerrarSesion()}
             >
-              <title>Menu</title>
-              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-            </svg>
-          </button>
-        </div>
-       
-        <div className="w-full block flex-grow lg:flex lg:justify-end lg:items-center lg:w-auto hidden" id="submenu">
-          <div className="text-sm">
-            <Link href="/">
-              <a className="block text-white text-center mt-4 lg:inline-block lg:mt-0  hover:text-white mr-4 px-5">
-                Inicio
-              </a>
-            </Link>
-            <Link href="/tienda">
-              <a className="block text-white text-center mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 px-5">
-                Tienda
-              </a>
-            </Link>
-            { admin 
-            ?
-            <Link href='/nuevoProducto'>
-              <a className='block text-white text-center mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 px-5'>
-                Nuevo Producto
-              </a>
-            </Link> 
-            : 
-            null
-            }
-            <Link href="/carrito">
-              <a className="block text-white text-center mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 px-5">
-                Carrito
-              </a>
-            </Link>
-            {usuario ? (
-              <button
-                type="button"
-                className="text-white font-bold text-center px-5"
-                onClick={() => cerrarSesion()}
-              >
-                Cerrar Sesión
-              </button>
+              Cerrar Sesión
+            </Button>
             ) : (
               <>
                 <Link href="/registro">
-                  <a className="block text-white text-center mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 px-5">
+                  <a className="">
                     Registro
                   </a>
                 </Link>
                 <Link href="/login">
-                  <a className="block text-white sm:text-white text-center mt-4 lg:inline-block lg:mt-0 hover:text-white mr-4 px-5">
+                  <a className="">
                     Iniciar Sesión
                   </a>
                 </Link>
               </>
             )}
-          </div>
-        </div>
-      </nav>
-    </div>
+          
+        </Toolbar>
+      </AppBar>
+     
+    </ThemeProvider>
   );
 };
 

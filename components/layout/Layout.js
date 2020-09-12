@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from "react";
 import Head from "next/head";
+import { makeStyles, Hidden} from '@material-ui/core';
 import Header from "./Header";
-import {motion, transform } from 'framer-motion';
+import Drawer from './Drawer';
+import {motion } from 'framer-motion';
 
 const Layout = (props) => {
 
@@ -10,7 +12,29 @@ const Layout = (props) => {
   useEffect(()=>{
     const date=new Date();
     setYear(date.getFullYear());
-  },[])
+  },[]);
+
+  const useStyles=makeStyles(theme=>({
+    root:{
+        display: 'flex'
+    },
+    toolbar: theme.mixins.toolbar,
+    content: {
+        flexGrow: 1,
+        minHeight:'100vh',
+        backgroundColor: '#eeeeee',
+        padding: theme.spacing(3)
+    }
+  }));
+
+  const classes=useStyles();
+
+  const [open,setOpen]=useState(false);
+
+  const handleDrawerOpen=()=>{
+      setOpen(!open);
+  }
+
 
   return (
     <>
@@ -22,13 +46,13 @@ const Layout = (props) => {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@400;700&display=swap"
           rel="stylesheet"
         />
-       <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+       
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
         <link href="/static/css/app.css" rel="stylesheet" />
       </Head>
-      <div className='body flex flex-wrap flex-col'>
-        <Header />
-        <motion.main className='bg-gray-200'
+      <div className={classes.root}>
+        <Header handleDrawerOpen={handleDrawerOpen}  />
+        <motion.main className=''
         initial="hidden" animate="visible"variants={{
           hidden: {
             scale: .99,
@@ -44,9 +68,22 @@ const Layout = (props) => {
         }}
         >{props.children}
         </motion.main>
-        <footer className='bg-gray-400 py-8 w-full self-end'>
-          <div className="footer-copyright  mx-auto w-full">
-            <div className="container mx-auto text-center">
+        <Hidden xsDown>
+                <Drawer
+                variant='permanent'
+                open={true}
+                />
+            </Hidden>
+            <Hidden smUp>
+                <Drawer
+                variant='temporary'
+                open={open}
+                onClose={handleDrawerOpen}
+                />
+            </Hidden>
+        <footer className=''>
+          <div className="footer-copyright">
+            <div className="">
                 © { year } Copyright Text
             </div>
           </div>
