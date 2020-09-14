@@ -1,0 +1,13 @@
+.title{
+    text-align: center;
+    margin-top: 60px !important;
+    margin-bottom: 30px !important;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.border{
+    border: 1px solid black;
+}

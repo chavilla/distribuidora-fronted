@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import UsuarioContext from "../../context/usuario/usuarioContext";
 import theme from '../themeConfig';
-import { ThemeProvider, AppBar, Toolbar, IconButton, Typography, Button } from '@material-ui/core';
+import { ThemeProvider, AppBar, Toolbar, IconButton, Typography, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 
@@ -67,6 +67,7 @@ const Header = ({handleDrawerOpen}) => {
   const classes=useStyles();
 
   return (
+    <div>
     <ThemeProvider theme={theme}>
       <AppBar>
         <Toolbar>
@@ -100,8 +101,9 @@ const Header = ({handleDrawerOpen}) => {
           
         </Toolbar>
       </AppBar>
-     
     </ThemeProvider>
+    <Box className={classes.offset}></Box>
+    </div>
   );
 };
 

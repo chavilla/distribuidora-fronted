@@ -3,6 +3,7 @@ import Layout from '../components/layout/Layout';
 import productoContext from '../context/productos/productoContext';
 import usuarioContext from '../context/usuario/usuarioContext';
 import Producto from '../components/Producto';
+import { Grid, Typography } from '@material-ui/core';
 
 const Tienda = () => {
     const { errorAgregado, agregadoFalse,productos,obtenerProductos}=useContext(productoContext);
@@ -21,20 +22,21 @@ const Tienda = () => {
 
     return ( 
         <Layout>
-            <div className="container mx-auto py-8">
-                <h3 className="text-center text-3xl md:text-5xl uppercase">Tienda</h3>
+            <div className="">
+                <Typography className='title' color='primary' variant='h3'>Tienda</Typography>
             </div>
 
-            <div className='container w-11/12 sm:w-8/12 md:w-11/12 lg:w-10/12 mx-auto'>
-                <div className="grid sm:grid-cols-2 sm:gap-4  md:grid-cols-3 md:gap-8 lg:grid-cols-3 lg:gap-12">
+            <Grid
+            container
+            spacing={1}
+            >
                 { productos.map(producto=>(
                     <Producto
                     key={producto.id}
                     producto={producto}
                     />
                 )) }
-                </div>
-            </div>
+            </Grid>
 
         </Layout>
      );

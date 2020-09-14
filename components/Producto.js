@@ -2,6 +2,11 @@ import React, { useContext } from "react";
 import Productocontext from "../context/productos/productoContext";
 import Usuariocontext from "../context/usuario/usuarioContext";
 import Link from "next/link";
+import { Grid, makeStyles, Typography, Button } from '@material-ui/core';
+
+const useStyles=makeStyles(theme=>({
+  
+}));
 
 const Producto = ({ producto }) => {
 
@@ -25,27 +30,37 @@ const Producto = ({ producto }) => {
   const { id, name, price, image, car } = producto;
 
   return (
-      <div className="bg-white pt-6 shadow-lg pb-6 mb-10">
-        <div className="w-full">
+      <Grid 
+        item
+        xs={12}
+        sm={6}
+        md={4}
+        lg={3}
+        spacing={2}
+        className='text-center'
+      >
+        <div className="">
           <img
-            className="w-7/12  h-64 mx-auto"
+            className=""
+            width='200px'
+            height='200px'
             src={`${process.env.backend}/api/products/getImage/${image}`}
             alt={`Imagen ${name}`}
           ></img>
         </div>
-        <div className="py-5">
-          <h3 className="text-center text-2xl">{name}</h3>
-          <p className="text-center text-3xl font-bold text-orange-500 mt-5">${price}</p>
+        <div className="">
+          <Typography variant='h5'>{name}</Typography>
+          <p className="">${price}</p>
         </div>
         { usuario 
         ?
-        <div className="w-10/12 mx-auto">
+        <div className="">
           { car!==0
           ?
           (<>
            
             <button
-            className="bg-orange-500 text-white py-4 w-full"
+            className=""
             type="button"
             onClick={() => {
               añadirProducto(producto);
@@ -55,24 +70,26 @@ const Producto = ({ producto }) => {
           </>  
           ) 
           : 
-            <button
-            className="bg-orange-600 text-white py-4 w-full"
-            type="button"
+            <Button
             onClick={() => {
               añadirProducto(producto);
             }}
-          >Añadido al carrito</button> 
+          >Añadido al carrito</Button> 
           }
         </div>
         :
-        <div className="w-10/12 mx-auto">
+        <div className="">
           <Link href='/registro'>
-            <button  className="bg-orange-500 text-white py-4 w-full">Registrate para comprar</button>
+            <Button  
+              variant='contained'
+              color='primary'
+            >
+              Registrate para comprar</Button>
           </Link>
         </div>
         }
        
-      </div>
+      </Grid>
 
   );
 };

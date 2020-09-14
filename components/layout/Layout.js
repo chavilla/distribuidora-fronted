@@ -52,42 +52,38 @@ const Layout = (props) => {
       </Head>
       <div className={classes.root}>
         <Header handleDrawerOpen={handleDrawerOpen}  />
-        <motion.main className=''
-        initial="hidden" animate="visible"variants={{
-          hidden: {
-            scale: .99,
-            opacity: 0,
-          },
-          visible: {
-            scale: 1,
-            opacity: 1,
-            transition: {
-              delay: .05
-            }
-          },
-        }}
-        >{props.children}
-        </motion.main>
         <Hidden xsDown>
-                <Drawer
-                variant='permanent'
-                open={true}
-                />
-            </Hidden>
-            <Hidden smUp>
-                <Drawer
-                variant='temporary'
-                open={open}
-                onClose={handleDrawerOpen}
-                />
-            </Hidden>
-        <footer className=''>
-          <div className="footer-copyright">
-            <div className="">
-                © { year } Copyright Text
-            </div>
-          </div>
-        </footer>
+          <Drawer
+          variant='permanent'
+          open={true}
+          />
+        </Hidden>
+        <Hidden smUp>
+          <Drawer
+          variant='temporary'
+          open={open}
+          onClose={handleDrawerOpen}
+          />
+        </Hidden>
+
+        <div className={classes.content}>
+          <motion.main className=''
+          initial="hidden" animate="visible"variants={{
+            hidden: {
+              scale: .99,
+              opacity: 0,
+            },
+            visible: {
+              scale: 1,
+              opacity: 1,
+              transition: {
+                delay: .05
+              }
+            },
+          }}
+          >{props.children}
+          </motion.main>
+        </div>
       </div>
     </>
   );

@@ -4,10 +4,13 @@ import { blue, grey } from '@material-ui/core/colors';
 const Theme=createMuiTheme({
     palette:{
         primary:{
-            main: blue[500]
+            main: blue[400]
         },
         secondary:{
             main: grey[700]
+        },
+        white:{
+            main: '#ffffff'
         }
     },
     typography:{
