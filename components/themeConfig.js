@@ -1,25 +1,28 @@
 import { createMuiTheme } from '@material-ui/core';
-import { blue, grey } from '@material-ui/core/colors';
+import { blue, grey, orange } from '@material-ui/core/colors';
 
-const Theme=createMuiTheme({
+const theme=createMuiTheme({
     palette:{
         primary:{
-            main: blue[400]
+            main: orange[600]
         },
         secondary:{
-            main: grey[700]
+            main: '#ffffff'
         },
-        white:{
+        initial:{
             main: '#ffffff'
         }
+
     },
     typography:{
         fontSize:14
     },
 
-    spacing: 4
+    spacing: 4,
 });
 
-Theme.spacing(6);
+theme.spacing(6);
 
-export default Theme;
+
+
+export default theme;

@@ -7,6 +7,7 @@ const drawerWidth=240;
 
 const useStyles=makeStyles(theme=>({
     drawer: {
+
         width: drawerWidth,
         flexShrink: 0
     },
@@ -19,7 +20,6 @@ const useStyles=makeStyles(theme=>({
     },
     fondo:{
         minHeight:64,
-        backgroundColor: 'blue[500]'
     }
 }));
 

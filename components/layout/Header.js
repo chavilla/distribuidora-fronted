@@ -87,13 +87,17 @@ const Header = ({handleDrawerOpen}) => {
             ) : (
               <>
                 <Link href="/registro">
-                  <a className="">
+                  <a className="links">
+                    <Typography>
                     Registro
+                    </Typography>
                   </a>
                 </Link>
                 <Link href="/login">
-                  <a className="">
-                    Iniciar Sesión
+                  <a className="links">
+                    <Typography>
+                      Iniciar Sesión
+                    </Typography>
                   </a>
                 </Link>
               </>
@@ -101,8 +105,8 @@ const Header = ({handleDrawerOpen}) => {
           
         </Toolbar>
       </AppBar>
+      <Box className={classes.offset}></Box>
     </ThemeProvider>
-    <Box className={classes.offset}></Box>
     </div>
   );
 };

@@ -83,6 +83,7 @@ const Producto = ({ producto }) => {
             <Button  
               variant='contained'
               color='primary'
+              className='text-white'
             >
               Registrate para comprar</Button>
           </Link>
