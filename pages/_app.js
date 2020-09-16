@@ -4,7 +4,7 @@ import CarritoState from "../context/carrito/carritoState";
 import UsuarioState from "../context/usuario/usuarioState";
 
 
-const MyApp = ({ Component, pageProps, router }) => {
+const MyApp = ({ Component, pageProps }) => {
 
   return (
     <UsuarioState>

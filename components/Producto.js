@@ -30,13 +30,12 @@ const Producto = ({ producto }) => {
   const { id, name, price, image, car } = producto;
 
   return (
+    
       <Grid 
         item
         xs={12}
-        sm={6}
-        md={4}
+        md={6}
         lg={3}
-        spacing={2}
         className='text-center'
       >
         <div className="">
@@ -89,9 +88,7 @@ const Producto = ({ producto }) => {
           </Link>
         </div>
         }
-       
       </Grid>
-
   );
 };
 

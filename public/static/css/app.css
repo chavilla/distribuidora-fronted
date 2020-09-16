@@ -1,6 +1,6 @@
 .title{
     text-align: center;
-    margin-top: 6rem !important;
+    margin-top: 5rem !important;
     margin-bottom: 40px !important;
 }
 
@@ -25,4 +25,42 @@
 .my{
     margin-top: 2rem !important;
     margin-bottom: 2rem !important;
+}
+
+.mx{
+    margin-left: 1.5rem !important;
+    margin-right: 1.5rem !important;
+}
+
+@media(min-width:786px){
+    .mx{
+        margin-left: .5rem !important;
+        margin-right: .5rem !important;
+    }
+}
+
+.m-auto{
+    margin: 0 auto !important;
+}
+
+.d-flex{
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-grow{
+    flex-grow: 1;
+    padding: 2rem 0;
+}
+
+.justify-between{
+    justify-content: space-around;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.w-25{
+    width: 25% !important;
 }

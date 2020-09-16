@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import { css } from '@emotion/core';
 import Layout from '../components/layout/Layout';
-import { Formulario, Campo, Boton } from '../components/ui/Formulario';
 import { useFormik } from 'formik';
 import UsuarioContext from '../context/usuario/usuarioContext';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
+import { ThemeProvider, Container, Typography, Box, TextField, Button } from '@material-ui/core';
+import theme from '../components/themeConfig';
 
 const Login = () => {
 
@@ -35,60 +35,71 @@ const Login = () => {
         }
       })
     
-      return (
-        <Layout>
-      <div className="container mx-auto" 
-      css={css `
-        padding-top:4rem;
-      `}
-      >
-        <form
-        className='bg-white w-11/12 mx-auto py-6 px-5 mb-12 sm:w-9/12 md:w-1/2 lg:w-1/3 lg:mx-auto lg:py-16 lg:px-8 lg:mb-32'
-        onSubmit={formik.handleSubmit}
+    return (
+      <Layout>
+      <ThemeProvider theme={theme}>
+        <Container
+          component='form'
+          maxWidth='sm'
+          onSubmit={formik.handleSubmit}
         >
-          <h3 className="center uppercase text-2xl text-center md:text-3xl">Introduce tus datos</h3>
-          
-            <input
-              placeholder="Email"
-              type="text"
-              className="border py-2 px-3 mx-auto mt-8 my w-full rounded shadow-md"
-              name="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            ></input>
+
+          <Typography variant='h3' className='title'>
+            Ingresa tus credenciales
+          </Typography>
+
+          <Box>
+            <TextField
+            margin='dense'
+            label='Email'
+            variant='filled'
+            fullWidth
+            name='email'
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            >
+            </TextField>
             {formik.touched.email && formik.errors.email 
               ?
-                <div className="alert bg-red-400 text-white py-2 text-center my-2">
+                <div className=''>
                   <p>{formik.errors.email}</p>
                 </div>
               : null
             }
+          </Box>
 
-            <input
-              type="password"
-              placeholder="Password"
-              className="border py-2 px-3 mx-auto mt-8 my w-full rounded shadow-md"
-              name="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            ></input>
-            {formik.touched.password && formik.errors.password 
-              ?
-                <div className="alert bg-red-400 text-white py-2 text-center my-2">
-                  <p>{formik.errors.password}</p>
-                </div>
-              : null
-            }
-          <button type="submit"
-          className="w-full mt-10 py-3 bg-orange-500 text-white"
-          >Iniciar Sesión</button>
-          {mensaje ? (<p className="bg-red-500 py-3 px-4 text-white fixed top-0 left-0 ml-5 mt-5">{mensaje}</p>):null}
-        </form>
-      </div>
-    </Layout>
-      );
+
+          <Box>
+            <TextField
+            margin='dense'
+            type="password"
+            label='Contraseña'
+            variant='filled'
+            fullWidth
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            >
+            </TextField>
+            {formik.touched.password && formik.errors.password ? (
+            <div className="">
+              <Typography color='error' variant='body1'>{formik.errors.password}</Typography>
+            </div>
+          ) : null}
+          </Box>
+          <Button type='submit'
+           className='my'
+           variant='contained'
+           color='primary'
+           fullWidth
+          ><Typography color='secondary'>Ingresar</Typography></Button>
+          {mensaje ? (<Typography color='error'>{mensaje}</Typography>):null}
+        </Container>
+      </ThemeProvider>
+      </Layout>
+    );
 }
  
 export default Login;

@@ -5,6 +5,8 @@ import CarritoContext from '../context/carrito/carritoContext';
 import UsuarioContext from '../context/usuario/usuarioContext';
 import Link from 'next/link';
 import Paypal from '../components/PaypalCheckoutButton';
+import { ThemeProvider, Typography } from '@material-ui/core';
+import theme from '../components/themeConfig';
 
 const Carrito = () => {
 
@@ -47,40 +49,41 @@ const Carrito = () => {
 
     return ( 
         <Layout>
-             { msj ? <p className='fixed top-1/2 text-white bg-blue-500 p-5'>{mensaje}</p> : null}
-             <div className="container mx-auto py-8">
-                <h3 className="text-center text-3xl md:text-5xl uppercase">Carrito</h3>
-            </div>
-            <section className='container w-11/12 mx-auto'>
-                { productosCarrito.length===0 
-                ?
-                (
-                    <div className='border-t-2 border-red-500'>
-                        <p className='text-center text-2xl mt-5 mb-4'>Tu carrito está vacío.</p>
-                        <Link href='/tienda'><a className='py-2 px-3 block text-center mx-auto my-10 w-10/12 sm:w-3/5 md:w-1/4 md:ml-0 bg-orange-600 text-white'>Volver a la tienda</a></Link>
-                    </div>
-                ) 
-                :
-                (
-                    <div className='carrito '>
-                        {productosCarrito.map(producto=>(
-                            <CarritoProducto
-                            setCount={setCount}
-                            key={producto.productId}
-                            producto={producto}
+            <ThemeProvider theme={theme}>
+             { msj ? <Typography className=''>{mensaje}</Typography> : null}
+             <Typography variant='h3' className='title'>
+                Carrito
+            </Typography>
+                <section className=''>
+                    { productosCarrito.length===0 
+                    ?
+                    (   <>
+                            <Typography>Tu carrito está vacío.</Typography>
+                            <Link href='/tienda'><a className=''>Volver a la tienda</a></Link>
+                        </>
+                    ) 
+                    :
+                    (
+                        <div className=''>
+                            {productosCarrito.map(producto=>(
+                                <CarritoProducto
+                                setCount={setCount}
+                                key={producto.productId}
+                                producto={producto}
+                                />
+                            ))}
+                            <div className=''>
+                            {count<1 ? null :
+                            <Paypal
+                            order={ordered}
                             />
-                        ))}
-                        <div className='pt-5 pb-10 sm:mb-10 md:flex justify-end md:py-10'>
-                        {count<1 ? null :
-                         <Paypal
-                         order={ordered}
-                         />
-                        }
+                            }
+                            </div>
                         </div>
-                    </div>
-                ) 
-                }
-            </section>
+                    ) 
+                    }
+                </section>
+            </ThemeProvider>
         </Layout>
      );
 }

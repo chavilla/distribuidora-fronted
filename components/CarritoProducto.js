@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import CarritoContext from "../context/carrito/carritoContext";
 import UsuarioContext from "../context/usuario/usuarioContext";
+import { Grid, Typography, TextField, Box } from "@material-ui/core";
 
 const CarritoProducto = ({ producto, setCount }) => {
  
@@ -9,7 +10,7 @@ const CarritoProducto = ({ producto, setCount }) => {
   const { usuario }=useContext(UsuarioContext);
 
   //Extraer las propiedades del producto y luego del usuario
-  const { productId,name, price, stock, image } = producto;
+  const { productId,name, price, image } = producto;
 
   // local para el subtotal
   const [cantidad, setCantidad]=useState(1);
@@ -40,39 +41,47 @@ const CarritoProducto = ({ producto, setCount }) => {
 
   return (
     <>
-    <div className="border my-2 bg-white md:grid md:grid-cols-12 md:py-3">
-      <div className="py-4"></div>
-      <div className="col-span-5 md:grid md:grid-cols-7 md:items-center">
-        <img
-          className="mx-auto md:col-span-2"
-          src={`${process.env.backend}/api/products/getImage/${image}`}
-          alt={`Imagen ${name}`}/>
-          <h2 className="text-center py-3 text-2xl md:px-3 md:py-3 md:col-span-5">{name}</h2>
-      </div>
-      <div className="py-5 flex items-center justify-between md:flex-col col-span-2">
-        <p className=" ml-5 text-xl md:m-0 md:text-center md:m-0 ">Precio</p>
-        <span className="font-bold text-2xl text-right mr-5 md:m-0 md:text-center">
-          ${price}
-        </span>
-      </div>
-      <div className="py-5 flex items-center justify-between md:flex-col col-span-2">
-        <label className="ml-5 text-xl md:m-0">Cantidad</label>
-        <input
-          type="number"
-          min="1"
-          className="w-12 mr-5 border-gray border text-center md:m-0"
-          value={cantidad}
-          onChange={e=>setCantidad(Number(e.target.value))}
-        />
-      </div>
-      <div className="py-5 flex items-center justify-between md:flex-col col-span-2">
-        <p className="ml-5 text-xl">Subtotal</p>
-        <span className="font-bold text-2xl text-right mr-5 my-5 md:m-0">
-         ${subtotal}
-        </span>
-      </div>
+    <div className='flex-grow'>
+      <Grid container spacing={1} alignItems='center'>
+        <Grid container item xs={12} md={2} lg={2}>
+          <img
+            className='m-auto'
+            width='100'
+            height='100'
+            src={`${process.env.backend}/api/products/getImage/${image}`}
+            alt={`Imagen ${name}`}/>
+        </Grid>
+        <Grid item xs={12} md={2} lg={2} className='d-flex justify-center'>
+          <Typography variant='h6' align='center'>{name}</Typography>
+        </Grid>
+
+        <Grid item xs={12} md={2} lg={2} className='d-flex justify-center'>
+          <Typography variant='h6' className='mx' align='right'>Precio: </Typography>
+          <Typography variant='h5' className='mx' align='left' color='primary'>
+            ${price}
+          </Typography>
+        </Grid>
+
+        <Grid item xs={12} md={3} lg={3} className='d-flex justify-center'>
+          <Typography variant='h6' className='mx'>Cantidad</Typography>
+          <TextField
+            type='number'
+            min='1'
+            className='mx w-25 text-center'
+            value={cantidad}
+            onChange={e=>setCantidad(Number(e.target.value))}
+          />
+        </Grid>
+
+        <Grid item xs={12} md={3} lg={3} className='d-flex justify-center'>
+          <Typography className='mx' variant='h6'>Subtotal</Typography>
+          <Typography className='mx' variant='h5' color='primary'>
+          ${subtotal}
+          </Typography>
+        </Grid>
+      </Grid>
     </div>
-    {error ? <p className='bg-red-500 py-4 px-3 text-white text-center md:w-6/12 mx-auto'>La cantidad debe ser igual o mayor a 1</p> :null}
+    {error ? <p className=''>La cantidad debe ser igual o mayor a 1</p> :null}
     </>
   );
 };

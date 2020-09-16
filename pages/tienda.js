@@ -35,8 +35,9 @@ const Tienda = () => {
           </Typography>
         </div>
 
-        <Grid container spacing={1}>
+        <Grid container spacing={10}>
           {productos.map((producto) => (
+            
             <Producto key={producto.id} producto={producto} />
           ))}
         </Grid>
