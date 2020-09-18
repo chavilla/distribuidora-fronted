@@ -1,8 +1,11 @@
 import { useReducer } from "react";
 import productoContext from "./productoContext";
 import productoReducer from "./productoReducer";
-import { OBTENER_PRODUCTOS, AGREGAR_PRODUCTO_CARRITO, ESTABLECER_IMAGEN, 
-  AGREGAR_PRODUCTO_ERROR, AGREGADO_FALSE } from "../../types/";
+import { OBTENER_PRODUCTOS, 
+  AGREGAR_PRODUCTO_CARRITO, ESTABLECER_IMAGEN, 
+  AGREGAR_PRODUCTO_ERROR, AGREGADO_FALSE , 
+  LOADING} 
+  from "../../types/";
 import clienteAxios from '../../config/axios';
 import { uploadImage } from "../../helper/uploadImage";
 
@@ -10,17 +13,33 @@ const productoState = ({ children }) => {
   const initialState = {
     productos: [],
     errorAgregado: false,
-    imagen:null
+    imagen:null,
+    loading:false
   };
   const [state, dispatch] = useReducer(productoReducer, initialState);
 
   const obtenerProductos = async () => {
     try {
+
+     
+        dispatch({
+          type: LOADING,
+          payload:true
+        });   
+     
+        
       const respuesta=await clienteAxios.get('api/products');
-      dispatch({
-        type: OBTENER_PRODUCTOS,
-        payload: respuesta.data.products
-      }); 
+      
+      setTimeout(() => {
+        dispatch({
+          type: OBTENER_PRODUCTOS,
+          payload: {
+            setProducts:respuesta.data.products,
+            setLoading: false
+          }
+        });
+      }, 1000);
+
     } catch (error) {
       console.log(error);
     }
@@ -86,6 +105,7 @@ const productoState = ({ children }) => {
         productos: state.productos,
         imagen:state.imagen,
         errorAgregado: state.errorAgregado,
+        loading:state.loading,
         obtenerProductos,
         guardarProducto,
         establecerImagen,

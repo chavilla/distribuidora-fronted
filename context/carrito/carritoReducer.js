@@ -1,13 +1,21 @@
 import { OBTENER_CARRITO, AGREGAR_PRODUCTO_CARRITO, AGREGAR_PRODUCTO_ERROR,
-AGREGADO_FALSE, ESTABLECE_ORDEN, VENTA_EXITO } from '../../types';
+AGREGADO_FALSE, ESTABLECE_ORDEN, VENTA_EXITO,  LOADING } from '../../types';
 
 export default (state,action)=>{
     switch(action.type){
+
+        case LOADING:
+            return{
+                ...state,
+                loading:action.payload  
+            }
+
         case OBTENER_CARRITO:
             return{
                 ...state,
                 productosCarrito:action.payload.car,
-                order: action.payload.order
+                order: action.payload.order,
+                loading:action.payload.setLoading
             }
         case AGREGAR_PRODUCTO_CARRITO:
             return{

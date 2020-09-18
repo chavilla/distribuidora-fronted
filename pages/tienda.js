@@ -5,6 +5,7 @@ import usuarioContext from "../context/usuario/usuarioContext";
 import Producto from "../components/Producto";
 import { Grid, Typography, ThemeProvider } from "@material-ui/core";
 import theme from "../components/themeConfig";
+import Spinner from "../components/layout/Spinner";
 
 const Tienda = () => {
   const {
@@ -12,6 +13,7 @@ const Tienda = () => {
     agregadoFalse,
     productos,
     obtenerProductos,
+    loading
   } = useContext(productoContext);
   const { usuario } = useContext(usuarioContext);
   //obtenerProductos();
@@ -35,12 +37,16 @@ const Tienda = () => {
           </Typography>
         </div>
 
-        <Grid container spacing={10}>
-          {productos.map((producto) => (
-            
-            <Producto key={producto.id} producto={producto} />
-          ))}
-        </Grid>
+        { loading 
+          ?
+            <Spinner/>
+          :
+          <Grid container spacing={10}>
+            {productos.map((producto) => (
+              <Producto key={producto.id} producto={producto} />
+            ))}
+          </Grid> 
+         }
       </ThemeProvider>
     </Layout>
   );

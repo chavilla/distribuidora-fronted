@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Paypal from '../components/PaypalCheckoutButton';
 import { ThemeProvider, Typography } from '@material-ui/core';
 import theme from '../components/themeConfig';
+import Spinner from '../components/layout/Spinner';
 
 const Carrito = () => {
 
@@ -16,7 +17,7 @@ const Carrito = () => {
 
     //---------------------Zona de leer el context-------------------------------------//
     const { usuario  }=useContext(UsuarioContext);
-    const {  order, mensaje,productosCarrito, obtenerCarrito }=useContext(CarritoContext);
+    const {  order, mensaje,productosCarrito, obtenerCarrito, loading }=useContext(CarritoContext);
 
     //------------------------Zona de useEffect----------------------------------------//
     useEffect(()=>{
@@ -51,15 +52,20 @@ const Carrito = () => {
         <Layout>
             <ThemeProvider theme={theme}>
              { msj ? <Typography className=''>{mensaje}</Typography> : null}
-             <Typography variant='h3' className='title'>
+             <Typography variant='h3' className='title' color='primary'>
                 Carrito
             </Typography>
+            {
+                loading 
+                ?
+                <Spinner/>
+                :
                 <section className=''>
                     { productosCarrito.length===0 
                     ?
                     (   <>
-                            <Typography>Tu carrito está vacío.</Typography>
-                            <Link href='/tienda'><a className=''>Volver a la tienda</a></Link>
+                            <Typography variant='h5'>Tu carrito está vacío.</Typography>
+                            <Link href='/tienda'><a className='link-back'>Volver a la tienda</a></Link>
                         </>
                     ) 
                     :
@@ -83,6 +89,7 @@ const Carrito = () => {
                     ) 
                     }
                 </section>
+            }
             </ThemeProvider>
         </Layout>
      );

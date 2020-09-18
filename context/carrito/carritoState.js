@@ -8,7 +8,8 @@ import {
   AGREGAR_PRODUCTO_ERROR,
   AGREGADO_FALSE,
   ESTABLECE_ORDEN,
-  VENTA_EXITO
+  VENTA_EXITO,
+  LOADING
 } from "../../types";
 
 const carritoState = (props) => {
@@ -16,7 +17,8 @@ const carritoState = (props) => {
     productosCarrito: [],
     agregado: false,
     mensaje: null,
-    order: []
+    order: [],
+    loading:false
   };
 
   const [state, dispatch] = useReducer(carritoReducer, initialState);
@@ -25,30 +27,42 @@ const carritoState = (props) => {
 
   /** ------------------ Obtiene el carrito cuando el usuario entra a ver el propio-------------------------  */
   const obtenerCarrito = async (usuarioId) => {
+
+    dispatch({
+      type: LOADING,
+      payload:true
+    });   
+
     try {
+
       const respuesta = await clienteAxios.get(`api/car/${usuarioId}`);
-      // Editar los productos del carrito para hacer un state de ordenes
-      const data_edit=respuesta.data.products_car;
-      let order_empty=[]
-      data_edit.map(data=>{
-          const item={
-            id: data.productId,
-            name:data.name,
-            count:1,
-            price: data.price,
-            userId:data.usuarioId
+
+      setTimeout(() => {
+        // Editar los productos del carrito para hacer un state de ordenes
+        const data_edit=respuesta.data.products_car;
+        let order_empty=[]
+        data_edit.map(data=>{
+            const item={
+              id: data.productId,
+              name:data.name,
+              count:1,
+              price: data.price,
+              userId:data.usuarioId
+            }
+            order_empty.push(item);
+          })
+
+
+        dispatch({
+          type: OBTENER_CARRITO,
+          payload: {
+            car:respuesta.data.products_car,
+            order:order_empty,
+            setLoading:false
           }
-          order_empty.push(item);
-        })
-
-
-      dispatch({
-        type: OBTENER_CARRITO,
-        payload: {
-          car:respuesta.data.products_car,
-          order:order_empty
-        }
-      });
+        });
+      }, 1000);
+      
     } catch (error) {
       console.log(error);
     }
@@ -83,7 +97,6 @@ const carritoState = (props) => {
       });
     }
   };
-
 
   //--------- Cada vez que el usuario modifica la cantidad se actualiza la orden----------//
   const updateOrder=(id,name,count,subtotal,userId)=>{
@@ -124,6 +137,11 @@ const carritoState = (props) => {
     }
   }
 
+  //----------- Elimina un producto del carrito-------------------//
+  const deleteProductOfCar= async (id) =>{
+
+  }
+
   return (
     <CarritoContext.Provider
       value={{
@@ -131,11 +149,13 @@ const carritoState = (props) => {
         agregado: state.agregado,
         mensaje: state.mensaje,
         order: state.order,
+        loading:state.loading,
         updateOrder,
         obtenerCarrito,
         añadirProductoCarrito,
         agregadoFalse,
-        setSale
+        setSale,
+        deleteProductOfCar
       }}
     >
       {props.children}

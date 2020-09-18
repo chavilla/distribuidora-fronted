@@ -27,7 +27,7 @@ const Producto = ({ producto }) => {
   
 
   //----------------Zona para aplicar desctructuring a cada producto-----//
-  const { id, name, price, image, car } = producto;
+  const { name, price, image, car } = producto;
 
   return (
     
@@ -49,7 +49,7 @@ const Producto = ({ producto }) => {
         </div>
         <div className="">
           <Typography variant='h5'>{name}</Typography>
-          <p className="">${price}</p>
+          <Typography color='primary' variant='h4'>${price}</Typography>
         </div>
         { usuario 
         ?
@@ -58,14 +58,12 @@ const Producto = ({ producto }) => {
           ?
           (<>
            
-            <button
-            className=""
+            <Button
             type="button"
             onClick={() => {
               añadirProducto(producto);
             }}
-          >Añadir al carrito</button>
-
+          >Añadir al carrito</Button>
           </>  
           ) 
           : 

@@ -40,7 +40,7 @@ const Login = () => {
       <ThemeProvider theme={theme}>
         <Container
           component='form'
-          maxWidth='sm'
+          maxWidth='xs'
           onSubmit={formik.handleSubmit}
         >
 
@@ -62,9 +62,9 @@ const Login = () => {
             </TextField>
             {formik.touched.email && formik.errors.email 
               ?
-                <div className=''>
-                  <p>{formik.errors.email}</p>
-                </div>
+              <Box>
+                <Typography color='error' variant='body1'>{formik.errors.email}</Typography>
+              </Box>
               : null
             }
           </Box>
@@ -84,9 +84,9 @@ const Login = () => {
             >
             </TextField>
             {formik.touched.password && formik.errors.password ? (
-            <div className="">
+            <Box>
               <Typography color='error' variant='body1'>{formik.errors.password}</Typography>
-            </div>
+            </Box>
           ) : null}
           </Box>
           <Button type='submit'

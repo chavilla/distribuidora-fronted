@@ -3,15 +3,24 @@ import {
     AGREGAR_PRODUCTO_CARRITO,
     ESTABLECER_IMAGEN,
     AGREGAR_PRODUCTO_ERROR,
-    AGREGADO_FALSE
+    AGREGADO_FALSE,
+    LOADING
 } from '../../types/';
 
 export default (state,action)=>{
     switch(action.type){
+
+        case LOADING:
+            return{
+                ...state,
+                loading:action.payload  
+            }
+
         case OBTENER_PRODUCTOS:
             return{
                 ...state,
-                productos:action.payload
+                productos:action.payload.setProducts,
+                loading:action.payload.setLoading
             }
         case AGREGAR_PRODUCTO_CARRITO:
             return{

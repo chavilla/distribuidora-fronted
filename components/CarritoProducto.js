@@ -1,12 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
 import CarritoContext from "../context/carrito/carritoContext";
 import UsuarioContext from "../context/usuario/usuarioContext";
-import { Grid, Typography, TextField, Box } from "@material-ui/core";
+import { Grid, Typography, TextField, Tooltip } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+import Spinner from "./layout/Spinner";
 
 const CarritoProducto = ({ producto, setCount }) => {
  
   //Zona de leer el context
-  const { updateOrder }=useContext(CarritoContext);
+  const { updateOrder, deleteProductOfCar }=useContext(CarritoContext);
   const { usuario }=useContext(UsuarioContext);
 
   //Extraer las propiedades del producto y luego del usuario
@@ -36,33 +46,35 @@ const CarritoProducto = ({ producto, setCount }) => {
 
   },[cantidad,producto,usuario]);
 
-
-
-
   return (
     <>
     <div className='flex-grow'>
       <Grid container spacing={1} alignItems='center'>
-        <Grid container item xs={12} md={2} lg={2}>
+        <Grid container item xs={12} md={3} lg={3}>
           <img
             className='m-auto'
-            width='100'
-            height='100'
+            width='70'
+            height='70'
             src={`${process.env.backend}/api/products/getImage/${image}`}
             alt={`Imagen ${name}`}/>
+            <Tooltip title='Eliminar' placement='top-start'>
+              <IconButton aria-label='Eliminar'>
+                  <DeleteIcon />
+              </IconButton>
+            </Tooltip>
         </Grid>
-        <Grid item xs={12} md={2} lg={2} className='d-flex justify-center'>
+        <Grid item xs={12} md={2} lg={2} className='d-flex'>
           <Typography variant='h6' align='center'>{name}</Typography>
         </Grid>
 
-        <Grid item xs={12} md={2} lg={2} className='d-flex justify-center'>
-          <Typography variant='h6' className='mx' align='right'>Precio: </Typography>
+        <Grid item xs={12} md={2} lg={2} className='d-flex'>
+          <Typography variant='h6' className='mx' align='left'>Precio: </Typography>
           <Typography variant='h5' className='mx' align='left' color='primary'>
             ${price}
           </Typography>
         </Grid>
 
-        <Grid item xs={12} md={3} lg={3} className='d-flex justify-center'>
+        <Grid item xs={12} md={2} lg={2} className='d-flex justify-center'>
           <Typography variant='h6' className='mx'>Cantidad</Typography>
           <TextField
             type='number'
@@ -73,7 +85,7 @@ const CarritoProducto = ({ producto, setCount }) => {
           />
         </Grid>
 
-        <Grid item xs={12} md={3} lg={3} className='d-flex justify-center'>
+        <Grid item xs={12} md={3} lg={3} className='d-flex'>
           <Typography className='mx' variant='h6'>Subtotal</Typography>
           <Typography className='mx' variant='h5' color='primary'>
           ${subtotal}

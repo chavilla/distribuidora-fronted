@@ -38,7 +38,7 @@ const Registro = (props) => {
       <ThemeProvider theme={Theme}>
       <Container
         component='form'
-        maxWidth='sm'
+        maxWidth='xs'
         onSubmit={formik.handleSubmit}
         >
           <Typography variant='h3' className='title'>
