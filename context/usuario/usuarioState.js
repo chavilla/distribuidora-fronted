@@ -9,7 +9,8 @@ import {
     REGISTRO_ERROR,
     OCULTAR_MENSAJE,
     USUARIO_AUTENTICADO,
-    CERRAR_SESION
+    CERRAR_SESION,
+    LOADING
 } from '../../types';
 import tokenAuth from '../../config/token';
 
@@ -20,6 +21,7 @@ const usuarioState=(props)=>{
         autenticado:null,
         token: typeof window !== 'undefined' ? localStorage.getItem('token'): '',
         mensaje:null,
+        loading:false,
         logout:null,
     }
 
@@ -28,16 +30,26 @@ const usuarioState=(props)=>{
     //Crea un usuario
     const crearUsuario=async (usuario)=>{
         try {
+
+            dispatch({
+                type: LOADING,
+                payload:true
+            });   
+
             const respuesta=await clienteAxios.post('/api/users',usuario);
-            console.log(respuesta);
+            
+            setTimeout(() => {
                 dispatch({
                     type:REGISTRO_EXITOSO,
-                    payload:respuesta.data.msg
+                    payload:respuesta.data.token
                 });
+            }, 3000);
+                
         } catch (error) {
+            console.log(error);
             dispatch({
                 type:REGISTRO_ERROR,
-                payload: error.response.data.msg 
+                payload: error
             })
         }
         setTimeout(()=>{
@@ -53,20 +65,33 @@ const usuarioState=(props)=>{
 
     const loginUsuario=async (usuario)=>{
         try {
+
+            dispatch({
+                type: LOADING,
+                payload:true
+            });   
+
             const respuesta=await clienteAxios.post('/api/auth',usuario);
-            dispatch({
-                type: LOGIN_EXITOSO,
-                payload: respuesta.data.token
-            })
+
+            setTimeout(()=>{
+                dispatch({
+                    type: LOGIN_EXITOSO,
+                    payload: respuesta.data.token
+                })
+            },3000);
+
         } catch (error) {
-            dispatch({
-                type: LOGIN_ERROR,
-                payload:error.response.data.msg
-            })
+
+            setTimeout(()=>{
+                dispatch({
+                    type: LOGIN_ERROR,
+                    payload:error.response.data.msg
+                });
+            },2000);
         }
         setTimeout(()=>{
             ocultarMensaje()
-        },3000)
+        },5000)
     }
 
     const usuarioAutenticado=async ()=>{
@@ -103,6 +128,7 @@ const usuarioState=(props)=>{
             autenticado:state.autenticado,
             token:state.token,
             logout:state.logout,
+            loading:state.loading,
             crearUsuario,
             loginUsuario,
             usuarioAutenticado,

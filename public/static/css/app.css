@@ -126,3 +126,16 @@
       transform: scale(1.0); 
     } 
   }
+
+
+  /*  Alert danger   */
+  .alert-danger{
+      background-color: indianred;
+      color: #ffffff;
+      text-align: center;
+      padding: 1rem 0;
+  }
+
+  .input-count{
+      width: 40px !important;
+  }

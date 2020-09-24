@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import CarritoContext from "../context/carrito/carritoContext";
 import UsuarioContext from "../context/usuario/usuarioContext";
-import { TextField } from "@material-ui/core";
+import { Grid, TextField, Typography } from "@material-ui/core";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 
@@ -39,22 +39,22 @@ const CarritoProducto = ({ producto, setCount, total, setTotal }) => {
 
   return (
     <>
-      <TableRow key={producto.id}>
-        <TableCell>{producto.name}</TableCell>
+      <TableRow key={producto.id}  >
+        <TableCell><Typography variant='h6'>{producto.name}</Typography></TableCell>
         <TableCell align='center'>
           <TextField
             type="number"
             min="1"
-            className="mx w-25 text-center"
+            className="mx text-center input-count"
             value={cantidad}
             onChange={(e) => setCantidad(Number(e.target.value))}
           />
         </TableCell>
-        <TableCell align='right'>{producto.price}</TableCell>
-        <TableCell align='right'>{subtotal}</TableCell>
+        <TableCell align='right'><Typography variant="body1" >${producto.price}</Typography></TableCell>
+        <TableCell align='right'><Typography>{subtotal}</Typography></TableCell>
       </TableRow>
       {error ? (
-        <p className="">La cantidad debe ser igual o mayor a 1</p>
+        <p className="alert-danger">La cantidad debe ser igual o mayor a 1</p>
       ) : null}
     </>
   );

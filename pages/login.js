@@ -4,19 +4,20 @@ import { useFormik } from 'formik';
 import UsuarioContext from '../context/usuario/usuarioContext';
 import { useRouter } from 'next/router';
 import * as Yup from 'yup';
+import Spinner from '../components/layout/Spinner';
 import { ThemeProvider, Container, Typography, Box, TextField, Button } from '@material-ui/core';
 import theme from '../components/themeConfig';
 
 const Login = () => {
 
   const router=useRouter();
-  const { mensaje,autenticado,loginUsuario }=useContext(UsuarioContext);
+  const { mensaje,autenticado,loginUsuario, loading }=useContext(UsuarioContext);
 
   useEffect(()=>{
-    if(autenticado){
+    if(autenticado && !loading){
       router.push('/');
     }
-  },[autenticado]);
+  },[autenticado,loading]);
 
     const formik=useFormik({
         initialValues:{
@@ -48,7 +49,12 @@ const Login = () => {
             Ingresa tus credenciales
           </Typography>
 
-          <Box>
+          {loading 
+            ? 
+            <Spinner/>
+            :
+            <>
+            <Box>
             <TextField
             margin='dense'
             label='Email'
@@ -96,6 +102,9 @@ const Login = () => {
            fullWidth
           ><Typography color='secondary'>Ingresar</Typography></Button>
           {mensaje ? (<Typography color='error'>{mensaje}</Typography>):null}
+            </>
+        }
+
         </Container>
       </ThemeProvider>
       </Layout>

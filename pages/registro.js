@@ -1,14 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Layout from "../components/layout/Layout";
 import UsuarioContext from "../context/usuario/usuarioContext";
+import { useRouter } from 'next/router';
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Container, Typography, TextField, Box, Button, ThemeProvider } from "@material-ui/core";
+import {
+  Container,
+  Typography,
+  TextField,
+  Box,
+  Button,
+  ThemeProvider,
+} from "@material-ui/core";
 import Theme from "../components/themeConfig";
+import Spinner from "../components/layout/Spinner";
 
 const Registro = (props) => {
   //obtener el context
-  const { mensaje, crearUsuario } = useContext(UsuarioContext);
+  const { mensaje, crearUsuario, loading, autenticado } = useContext(UsuarioContext);
 
   /** Formik para el el formulario   */
   const formik = useFormik({
@@ -33,88 +42,103 @@ const Registro = (props) => {
     },
   });
 
+  const router=useRouter();
+  useEffect(()=>{
+    if(autenticado && !loading){
+      router.push('/');
+    }
+  },[autenticado,loading]);
+
   return (
     <Layout>
       <ThemeProvider theme={Theme}>
-      <Container
-        component='form'
-        maxWidth='xs'
-        onSubmit={formik.handleSubmit}
+        <Container
+          component="form"
+          maxWidth="xs"
+          onSubmit={formik.handleSubmit}
         >
-          <Typography variant='h3' className='title'>
+          <Typography variant="h3" className="title">
             Introduce tus datos
           </Typography>
 
-          <Box
-          >
-          <TextField
-            margin='dense'
-            label='Email'
-            variant='filled'
-            fullWidth
-            name='email'
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          ></TextField>
-            {formik.touched.email && formik.errors.email ? (
-            <Box>
-              <Typography color='error' variant='body1'>{formik.errors.email}</Typography>
-            </Box>
-          ) : null}
-          </Box>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <>
+              <Box>
+                <TextField
+                  margin="dense"
+                  label="Email"
+                  variant="filled"
+                  fullWidth
+                  name="email"
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                ></TextField>
+                {formik.touched.email && formik.errors.email ? (
+                  <Box>
+                    <Typography color="error" variant="body1">
+                      {formik.errors.email}
+                    </Typography>
+                  </Box>
+                ) : null}
+              </Box>
 
-          <Box
-          >
-          <TextField
-            margin='dense'
-            label='Nombre'
-            variant='filled'
-            fullWidth
-            name='name'
-            value={formik.values.name}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          ></TextField>
-           {formik.touched.name && formik.errors.name ? (
-            <div>
-              <Typography color='error' variant='body1'>{formik.errors.name}</Typography>
-            </div>
-          ) : null}
+              <Box>
+                <TextField
+                  margin="dense"
+                  label="Nombre"
+                  variant="filled"
+                  fullWidth
+                  name="name"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                ></TextField>
+                {formik.touched.name && formik.errors.name ? (
+                  <div>
+                    <Typography color="error" variant="body1">
+                      {formik.errors.name}
+                    </Typography>
+                  </div>
+                ) : null}
+              </Box>
 
-          </Box>
-        
-          <Box>
-          <TextField
-            margin='dense'
-            type="password"
-            label='Contraseña'
-            variant='filled'
-            fullWidth
-            name="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-          ></TextField>
-           {formik.touched.password && formik.errors.password ? (
-            <div className="">
-              <Typography color='error' variant='body1'>{formik.errors.password}</Typography>
-            </div>
-          ) : null}
-          </Box>
-         
-          <Button
-            type='submit'
-            className='my'
-            variant='contained'
-            color='primary'
-            fullWidth>
-            <Typography color='secondary'>Registrarse</Typography>
-          </Button>
-          {mensaje ? (
-            <p className="">{mensaje}</p>
-          ) : null}
-      </Container>
+              <Box>
+                <TextField
+                  margin="dense"
+                  type="password"
+                  label="Contraseña"
+                  variant="filled"
+                  fullWidth
+                  name="password"
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                ></TextField>
+                {formik.touched.password && formik.errors.password ? (
+                  <div className="">
+                    <Typography color="error" variant="body1">
+                      {formik.errors.password}
+                    </Typography>
+                  </div>
+                ) : null}
+              </Box>
+
+              <Button
+                type="submit"
+                className="my"
+                variant="contained"
+                color="primary"
+                fullWidth
+              >
+                <Typography color="secondary">Registrarse</Typography>
+              </Button>
+              {mensaje ? <p className="">{mensaje}</p> : null}
+            </>
+          )}
+        </Container>
       </ThemeProvider>
     </Layout>
   );
