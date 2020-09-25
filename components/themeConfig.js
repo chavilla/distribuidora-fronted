@@ -7,7 +7,7 @@ const theme=createMuiTheme({
             main: orange[600]
         },
         secondary:{
-            main: '#ffffff'
+            main: '#fafafa'
         },
         initial:{
             main: '#ffffff'
@@ -21,7 +21,7 @@ const theme=createMuiTheme({
     spacing: 4,
 });
 
-theme.spacing(6);
+theme.spacing(8);
 
 
 

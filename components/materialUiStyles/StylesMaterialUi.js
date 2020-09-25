@@ -8,16 +8,25 @@ export const useStyles = makeStyles({
         maxWidth: "100%",
         marginBottom: 20
     },
-    tableContainer:{
-        border: '1px',
-        maxWidth:'90%', 
-        marginLeft: "auto",
-        marginRight: "auto",
-    },
 
     tableHeader:{
         backgroundColor: theme.palette.common.black,
         color: theme.palette.common.white
+    },
+
+    mx:{
+        marginLeft:20,
+        marginRight:20
+    },
+
+    btnProduct:{
+        display:'block',
+        width:'90%',
+        marginLeft: 'auto',
+        marginRight:' auto',
+        marginBottom:10
+
     }
+
     });
  

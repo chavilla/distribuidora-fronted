@@ -39,7 +39,7 @@ const CarritoProducto = ({ producto, setCount, total, setTotal }) => {
 
   return (
     <>
-      <TableRow key={producto.id}  >
+    <TableRow key={producto.id}  >
         <TableCell><Typography variant='h6'>{producto.name}</Typography></TableCell>
         <TableCell align='center'>
           <TextField
