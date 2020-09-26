@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import theme from "../themeConfig";
 
     
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme)=>({
     table: {
         minWidth: 200,
         maxWidth: "100%",
@@ -28,5 +28,5 @@ export const useStyles = makeStyles({
 
     }
 
-    });
+    }));
  

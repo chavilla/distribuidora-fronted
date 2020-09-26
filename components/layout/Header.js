@@ -42,9 +42,8 @@ const Header = ({handleDrawerOpen}) => {
             display: 'none'
         }
     },
-    ancho:{
-        backgroundColor: "#fe4918 !important"
-    },
+
+    secondary:theme.palette.secondary,
 
     title:{
         flexGrow:1
@@ -56,12 +55,13 @@ const Header = ({handleDrawerOpen}) => {
     appBar:{
         [theme.breakpoints.up('sm')]:{
         width: `calc(100% - ${240}px)`,
-        marginLeft: 240
-        }
+        marginLeft: 240,
+        },
     },
     hide: {
         display: 'none',
       } 
+      
   }));
 
   const classes=useStyles();
@@ -69,7 +69,7 @@ const Header = ({handleDrawerOpen}) => {
   return (
     <div>
     <ThemeProvider theme={theme}>
-      <AppBar>
+      <AppBar className='bg-blue'>
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu" 
             className={classes.menuButton}

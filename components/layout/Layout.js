@@ -22,8 +22,8 @@ const Layout = (props) => {
     content: {
         flexGrow: 1,
         minHeight:'100vh',
-        backgroundColor: '#eeeeee',
-        padding: theme.spacing(3)
+        padding: theme.spacing(2),
+        backgroundColor:'#ffffff'
     }
   }));
 
@@ -34,6 +34,7 @@ const Layout = (props) => {
   const handleDrawerOpen=()=>{
       setOpen(!open);
   }
+
 
 
   return (

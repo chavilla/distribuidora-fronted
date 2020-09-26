@@ -1,11 +1,7 @@
-.title {
-  text-align: center;
-  margin-top: 5rem !important;
-  margin-bottom: 40px !important;
-}
+
 
 .text-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .border {
@@ -15,7 +11,7 @@
 .links {
   color: #ffffff;
   padding: 0 0.5rem;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .text-white {
@@ -198,4 +194,47 @@
   height: 200px;
 }
 
+.MuiDrawer-paperAnchorDockedLeft{
+  background-color:rgb(35, 40, 45) !important;
+}
 
+@media(max-width:768px){
+  .MuiDrawer-paperAnchorDockedLeft{
+    background-color:#23282D !important;
+  }
+}
+
+.bg-blue{
+  background-color: #2196f3 !important;
+}
+
+
+/* Estilos Formulario login y registro */
+
+.title{
+  margin-bottom: 25px !important;
+}
+
+.containerFrmLogin{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.frmLogin{
+  background-color: #ffffff;
+  max-width: 400px !important;
+  padding: 3rem;
+}
+
+.avatar{
+  background-color: crimson !important;
+  margin: .3rem auto !important;
+
+}
+
+.text-field{
+  margin: 1rem 0 !important;
+}

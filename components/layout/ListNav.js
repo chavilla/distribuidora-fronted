@@ -8,6 +8,7 @@ import {
   Divider,
   ThemeProvider,
   Link,
+  Typography
 } from "@material-ui/core";
 //Icons
 import InfoIcon from "@material-ui/icons/Info";
@@ -17,21 +18,21 @@ import theme from "../themeConfig";
 
 const ListNav = () => {
   return (
-    <ThemeProvider theme={theme}>
+   
       <List component="nav">
         <Link component="a" href="/">
           <ListItem button>
             <ListItemIcon>
-              <InfoIcon></InfoIcon>
+              <InfoIcon color='primary' ></InfoIcon>
             </ListItemIcon>
-            <ListItemText>Inicio</ListItemText>
+            <ListItemText><Typography className='links'>Inicio</Typography></ListItemText>
           </ListItem>
         </Link>
 
         <Link component="a" href="/tienda">
           <ListItem button>
             <ListItemIcon>
-              <ContactsIcon />
+              <ContactsIcon color='primary' />
             </ListItemIcon>
             <ListItemText>Tienda</ListItemText>
           </ListItem>
@@ -42,13 +43,13 @@ const ListNav = () => {
         <Link component="a" href="/carrito">
           <ListItem button>
             <ListItemIcon>
-              <LiveHelpIcon />
+              <LiveHelpIcon  color='primary' />
             </ListItemIcon>
             <ListItemText>Carrito</ListItemText>
           </ListItem>
         </Link>
       </List>
-    </ThemeProvider>
+
   );
 };
 
