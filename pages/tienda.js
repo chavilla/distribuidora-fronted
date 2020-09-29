@@ -31,8 +31,8 @@ const Tienda = () => {
   return (
     <Layout>
       <ThemeProvider theme={theme}>
-        <div className="">
-          <Typography className="title" color="primary" variant="h3">
+        <div>
+          <Typography className="title text-center" color="secondary" variant="h3">
             Tienda
           </Typography>
         </div>

@@ -60,7 +60,7 @@ const Header = ({handleDrawerOpen}) => {
     },
     hide: {
         display: 'none',
-      } 
+    }
       
   }));
 

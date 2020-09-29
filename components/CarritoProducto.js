@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import CarritoContext from "../context/carrito/carritoContext";
 import UsuarioContext from "../context/usuario/usuarioContext";
-import { Grid, TextField, Typography } from "@material-ui/core";
+import { TextField, Typography, Button, ThemeProvider } from "@material-ui/core";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
+import DeleteIcon from '@material-ui/icons/Delete';
+import theme from "./themeConfig";
 
 const CarritoProducto = ({ producto, setCount, total, setTotal }) => {
 
@@ -37,9 +39,24 @@ const CarritoProducto = ({ producto, setCount, total, setTotal }) => {
     setCount(cantidad);
   }, [cantidad, producto, usuario]);
 
+  const setIdCar=(id)=>{
+    console.log(id);
+  }
+
   return (
     <>
-    <TableRow key={producto.id}  >
+    <ThemeProvider theme={theme}>
+    <TableRow key={producto.id}>
+        <TableCell>
+          <Button
+          variant="contained"
+          className='btn-delete'
+          startIcon={<DeleteIcon />}
+          onClick={e=>deleteProductOfCar(producto.idCar, producto.productId)}
+          >
+            Delete
+          </Button>
+        </TableCell>
         <TableCell><Typography variant='h6'>{producto.name}</Typography></TableCell>
         <TableCell align='center'>
           <TextField
@@ -56,6 +73,7 @@ const CarritoProducto = ({ producto, setCount, total, setTotal }) => {
       {error ? (
         <p className="alert-danger">La cantidad debe ser igual o mayor a 1</p>
       ) : null}
+      </ThemeProvider>
     </>
   );
 };

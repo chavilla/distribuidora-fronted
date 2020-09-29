@@ -50,18 +50,22 @@ const Producto = ({ producto }) => {
                     <Button
                       type="button"
                       variant="contained"
-                      className={classes.btnProduct}
-                      color="primary"
+                      fullWidth
+                      color="secondary"
                       onClick={() => {
                         añadirProducto(producto);
                       }}
                     >
-                      <Typography color="secondary">
+                      <Typography color='primary'>
                         Añadir al carrito
                       </Typography>
                     </Button>
                   ) : (
                     <Button
+                      type="button"
+                      variant="contained"
+                      fullWidth
+                      color="secondary"
                       onClick={() => {
                         añadirProducto(producto);
                       }}
@@ -71,7 +75,6 @@ const Producto = ({ producto }) => {
                   )}
                 </>
               ) : (
-                  <Link href="/registro">
                     <Button
                       fullWidth
                       variant="contained"
@@ -80,8 +83,6 @@ const Producto = ({ producto }) => {
                     >
                       Ver más
                     </Button>
-                  </Link>
-                
               )}
           </CardActions>
           </CardActionArea>

@@ -100,6 +100,7 @@ const Login = () => {
             <InputLabel htmlFor="input-with-icon-adornment">password</InputLabel>
             <Input
               name='password'
+              type='password'
               className='text-field'
               value={formik.values.password}
               onChange={formik.handleChange}

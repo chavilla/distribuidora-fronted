@@ -76,7 +76,7 @@ const Carrito = () => {
     <Layout>
       <ThemeProvider theme={theme}>
         {msj ? <Typography className="">{mensaje}</Typography> : null}
-        <Typography variant="h3" className="title" color="primary">
+        <Typography variant="h3" className="title text-center" color="secondary">
           Carrito
         </Typography>
         {loading ? (
@@ -101,6 +101,7 @@ const Carrito = () => {
                     <TableCell align="right">Precios</TableCell>
                   </TableRow>
                   <TableRow>
+                  <TableCell    className={classes.tableHeader}>Acción</TableCell>
                     <TableCell  className={classes.tableHeader}>Descripción</TableCell>
                     <TableCell  className={classes.tableHeader} align="center">Cantidad</TableCell>
                     <TableCell  className={classes.tableHeader} align="center">Precio Unitario</TableCell>
@@ -111,7 +112,7 @@ const Carrito = () => {
                   {productosCarrito.map((producto) => (
                     <CarritoProducto
                       setCount={setCount}
-                      key={producto.id}
+                      key={producto.idCar}
                       producto={producto}
                       setTotal={setTotal}
                       total={total}

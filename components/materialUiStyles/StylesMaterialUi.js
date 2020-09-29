@@ -10,8 +10,7 @@ export const useStyles = makeStyles((theme)=>({
     },
 
     tableHeader:{
-        backgroundColor: theme.palette.common.black,
-        color: theme.palette.common.white
+        
     },
 
     mx:{

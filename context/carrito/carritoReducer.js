@@ -1,5 +1,7 @@
 import { OBTENER_CARRITO, AGREGAR_PRODUCTO_CARRITO, AGREGAR_PRODUCTO_ERROR,
-AGREGADO_FALSE, ESTABLECE_ORDEN, VENTA_EXITO,  LOADING } from '../../types';
+AGREGADO_FALSE, ESTABLECE_ORDEN, VENTA_EXITO,  LOADING,
+ELIMINAR_PRODUCTO_CARRITO
+} from '../../types';
 
 export default (state,action)=>{
     switch(action.type){
@@ -38,6 +40,14 @@ export default (state,action)=>{
                 ...state,
                 order: state.order.map(order=> order.id===action.payload.id ? action.payload : order )
             }
+
+        case ELIMINAR_PRODUCTO_CARRITO:
+            return{
+                ...state,
+                productosCarrito: state.productosCarrito.filter(item=> item.idCar !==action.payload.idCar ),
+                order: state.order.filter(item=> item.id !== action.payload.idProduct)
+            }
+
         case VENTA_EXITO:
             return{
                 ...state,

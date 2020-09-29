@@ -9,7 +9,8 @@ import {
   AGREGADO_FALSE,
   ESTABLECE_ORDEN,
   VENTA_EXITO,
-  LOADING
+  LOADING,
+  ELIMINAR_PRODUCTO_CARRITO
 } from "../../types";
 
 const carritoState = (props) => {
@@ -40,18 +41,19 @@ const carritoState = (props) => {
       setTimeout(() => {
         // Editar los productos del carrito para hacer un state de ordenes
         const data_edit=respuesta.data.products_car;
+
         let order_empty=[]
         data_edit.map(data=>{
             const item={
               id: data.productId,
+              carId: data.idCar,
               name:data.name,
               count:1,
               price: data.price,
               userId:data.usuarioId
             }
             order_empty.push(item);
-          })
-
+          });
 
         dispatch({
           type: OBTENER_CARRITO,
@@ -69,6 +71,7 @@ const carritoState = (props) => {
   };
 
   //----------Se añade un producto al carrito------------------------//
+
   const añadirProductoCarrito = async (producto, usuario) => {
     if (producto.car === 0) {
       producto.car = 1;
@@ -99,6 +102,7 @@ const carritoState = (props) => {
   };
 
   //--------- Cada vez que el usuario modifica la cantidad se actualiza la orden----------//
+
   const updateOrder=(id,name,count,subtotal,userId)=>{
     const orderUpdated={
       id,
@@ -122,6 +126,7 @@ const carritoState = (props) => {
   };
 
   //--------------------Ejecuta una venta una vez el pago se ha hecho efectivo-------------------//
+
   const setSale =async (sale) =>{
     
     try {
@@ -138,8 +143,22 @@ const carritoState = (props) => {
   }
 
   //----------- Elimina un producto del carrito-------------------//
-  const deleteProductOfCar= async (id) =>{
+  const deleteProductOfCar= async (idCar , idProduct) =>{
 
+   try {
+
+    await clienteAxios.delete(`/api/car/${idCar}`);
+
+    dispatch({
+      type: ELIMINAR_PRODUCTO_CARRITO,
+      payload: {
+        idCar,
+        idProduct
+      }
+    }); 
+   } catch (error) {
+    console.log(error); 
+   }
   }
 
   return (

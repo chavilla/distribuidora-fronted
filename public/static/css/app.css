@@ -214,6 +214,7 @@
 /* Estilos Formulario login y registro */
 
 .title{
+  margin-top: 6rem !important;
   margin-bottom: 25px !important;
 }
 
@@ -239,4 +240,9 @@
 
 .text-field{
   margin: 1rem 0 !important;
+}
+
+.btn-delete{
+  background-color: #DF4C4D !important;
+  color: #ffffff !important;
 }
