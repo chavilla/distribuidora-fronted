@@ -40,7 +40,7 @@ const Producto = ({ producto }) => {
           </div>
           <CardContent>
               <Typography variant="h5">{name}</Typography>
-              <Typography variant="h4">${price}</Typography>
+              <Typography variant="h4" color='secondary'>${price}</Typography>
           </CardContent>
 
           <CardActions>
@@ -73,11 +73,12 @@ const Producto = ({ producto }) => {
               ) : (
                   <Link href="/registro">
                     <Button
+                      fullWidth
                       variant="contained"
-                      color="primary"
+                      color="secondary"
                       className="text-white"
                     >
-                      Registrate para comprar
+                      Ver más
                     </Button>
                   </Link>
                 

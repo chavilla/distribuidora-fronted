@@ -26,6 +26,10 @@ export const useStyles = makeStyles((theme)=>({
         marginRight:' auto',
         marginBottom:10
 
+    },
+
+    cards:{
+        backgroundColor:'#e1e1e1'
     }
 
     }));

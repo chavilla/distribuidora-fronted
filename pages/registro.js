@@ -7,13 +7,21 @@ import * as Yup from "yup";
 import {
   Container,
   Typography,
-  TextField,
-  Box,
   Button,
   ThemeProvider,
+  Avatar, 
+  CssBaseline,
+  InputLabel,
+  InputAdornment,
+  Input
 } from "@material-ui/core";
-import Theme from "../components/themeConfig";
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import LockIcon from '@material-ui/icons/Lock';
+import FaceIcon from '@material-ui/icons/Face';
+import { useStyles } from '../components/materialUiStyles/StylesMaterialUi';
 import Spinner from "../components/layout/Spinner";
+import theme from "../components/themeConfig";
 
 const Registro = (props) => {
   //obtener el context
@@ -49,97 +57,110 @@ const Registro = (props) => {
     }
   },[autenticado,loading]);
 
+  const classes=useStyles();
+
   return (
     <Layout>
-      <ThemeProvider theme={Theme}>
-        <Container
-          component="form"
-          maxWidth="xs"
-          onSubmit={formik.handleSubmit}
-        >
-          <Typography variant="h3" className="title">
-            Introduce tus datos
-          </Typography>
+    <ThemeProvider theme={theme}>
+      <div className='containerFrmLogin'>
+      <Container
+        component='form'
+        maxWidth='md'
+        className='frmLogin'
+        onSubmit={formik.handleSubmit}
+      >
+      <CssBaseline/>
+      <div className={classes.paper}>
+      <Avatar className='avatar'>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography className='text-center title' component='h1' variant='h4'>
+          REGISTRO
+        </Typography>
 
-          {loading ? (
-            <Spinner />
-          ) : (
-            <>
-              <Box>
-                <TextField
-                  margin="dense"
-                  label="Email"
-                  variant="filled"
-                  fullWidth
-                  name="email"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                ></TextField>
-                {formik.touched.email && formik.errors.email ? (
-                  <Box>
-                    <Typography color="error" variant="body1">
-                      {formik.errors.email}
-                    </Typography>
-                  </Box>
-                ) : null}
-              </Box>
+        {loading 
+          ? 
+          <Spinner/>
+          :
+          <>
+           <InputLabel htmlFor="input-with-icon-adornment">Name</InputLabel>
+            <Input
+              name='name'
+              className='text-field'
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              fullWidth
+              id="input-with-icon-adornment"
+              startAdornment={
+                <InputAdornment position="start">
+                  <FaceIcon/>
+                </InputAdornment>
+              }
+            />
+            {formik.touched.name && formik.errors.name 
+              ?
+                <Typography color='error' variant='body1'>{formik.errors.name}</Typography>
+              : null
+            }
+          <InputLabel htmlFor="input-with-icon-adornment">Email</InputLabel>
+            <Input
+              name='email'
+              className='text-field'
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              fullWidth
+              id="input-with-icon-adornment"
+              startAdornment={
+                <InputAdornment position="start">
+                  <AccountCircle />
+                </InputAdornment>
+              }
+            />
+            {formik.touched.email && formik.errors.email 
+              ?
+                <Typography color='error' variant='body1'>{formik.errors.email}</Typography>
+              : null
+            }
 
-              <Box>
-                <TextField
-                  margin="dense"
-                  label="Nombre"
-                  variant="filled"
-                  fullWidth
-                  name="name"
-                  value={formik.values.name}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                ></TextField>
-                {formik.touched.name && formik.errors.name ? (
-                  <div>
-                    <Typography color="error" variant="body1">
-                      {formik.errors.name}
-                    </Typography>
-                  </div>
-                ) : null}
-              </Box>
 
-              <Box>
-                <TextField
-                  margin="dense"
-                  type="password"
-                  label="Contraseña"
-                  variant="filled"
-                  fullWidth
-                  name="password"
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                ></TextField>
-                {formik.touched.password && formik.errors.password ? (
-                  <div className="">
-                    <Typography color="error" variant="body1">
-                      {formik.errors.password}
-                    </Typography>
-                  </div>
-                ) : null}
-              </Box>
+          <InputLabel htmlFor="input-with-icon-adornment">password</InputLabel>
+          <Input
+            name='password'
+            className='text-field'
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            fullWidth
+            id="input-with-icon-adornment"
+            startAdornment={
+              <InputAdornment position="start">
+               <LockIcon/>
+              </InputAdornment>
+            }
+          />
 
-              <Button
-                type="submit"
-                className="my"
-                variant="contained"
-                color="primary"
-                fullWidth
-              >
-                <Typography color="secondary">Registrarse</Typography>
-              </Button>
-              {mensaje ? <p className="">{mensaje}</p> : null}
-            </>
-          )}
-        </Container>
-      </ThemeProvider>
+          {formik.touched.password && formik.errors.password 
+            ?
+              <Typography color='error' variant='body1'>{formik.errors.password}</Typography>
+            : null
+          }
+         
+        <Button type='submit'
+         className='my'
+         fullWidth
+         variant='contained'
+         color='secondary'
+         
+        ><Typography color='primary'>Enviar</Typography></Button>
+        {mensaje ? (<Typography color='error'>{mensaje}</Typography>):null}
+          </>
+      }
+      </div>
+      </Container>
+      </div>
+    </ThemeProvider>
     </Layout>
   );
 };

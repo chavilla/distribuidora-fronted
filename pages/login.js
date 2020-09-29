@@ -7,9 +7,7 @@ import * as Yup from 'yup';
 import Spinner from '../components/layout/Spinner';
 import { ThemeProvider, 
   Container, 
-  Typography, 
-  Box, 
-  TextField, 
+  Typography,
   Button, 
   Avatar, 
   CssBaseline,
