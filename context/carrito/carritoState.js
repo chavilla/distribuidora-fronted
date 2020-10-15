@@ -146,7 +146,7 @@ const carritoState = (props) => {
   const deleteProductOfCar= async (idCar , idProduct) =>{
 
    try {
-
+     
     await clienteAxios.delete(`/api/car/${idCar}`);
 
     dispatch({
@@ -157,7 +157,7 @@ const carritoState = (props) => {
       }
     }); 
    } catch (error) {
-    console.log(error); 
+    console.log(error.response); 
    }
   }
 
