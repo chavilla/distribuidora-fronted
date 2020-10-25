@@ -1,18 +1,21 @@
 import React, {useContext, useState, useEffect} from 'react';
 import Layout from '../components/layout/Layout';
+import Categories from '../components/layout/Categories';
 import UsuarioContext from "../context/usuario/usuarioContext";
 import Link from 'next/link';
 import {motion } from 'framer-motion';
+import Hero from '../components/layout/Hero';
+import Recommended from '../components/layout/Recommended';
+import About from '../components/layout/About';
 
 const Home = () => {
 
   return ( 
     <Layout>
-      <div>
-      <div className="container">
-        <h3 >Desde Index</h3>
-      </div>
-      </div>
+      <Hero/>
+      <Categories/>
+      <Recommended/>
+      <About/>
     </Layout>
    );
 }

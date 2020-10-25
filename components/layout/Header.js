@@ -1,10 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import UsuarioContext from "../../context/usuario/usuarioContext";
-import theme from '../themeConfig';
-import { ThemeProvider, AppBar, Toolbar, IconButton, Typography, Button, Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import DehazeIcon from '@material-ui/icons/Dehaze';
 
 const Header = ({handleDrawerOpen}) => {
   
@@ -34,80 +30,44 @@ const Header = ({handleDrawerOpen}) => {
       }
   },[usuario]);
 
-  const useStyles=makeStyles(theme=>({
-    offset: theme.mixins.toolbar,
-    menuButton:{
-        marginRight: theme.spacing(2),
-        [theme.breakpoints.up('sm')]:{
-            display: 'none'
-        }
-    },
-
-    secondary:theme.palette.secondary,
-
-    title:{
-        flexGrow:1
-    },
-
-    btnText:{
-        color: "#ffffff"
-    },
-    appBar:{
-        [theme.breakpoints.up('sm')]:{
-        width: `calc(100% - ${240}px)`,
-        marginLeft: 240,
-        },
-    },
-    hide: {
-        display: 'none',
-    }
-      
-  }));
-
-  const classes=useStyles();
 
   return (
-    <div>
-    <ThemeProvider theme={theme}>
-      <AppBar className='bg-blue'>
-        <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu" 
-            className={classes.menuButton}
-            onClick={ handleDrawerOpen }
-          >
-            <DehazeIcon/>
-          </IconButton>
-          <Typography variant="h4" className={classes.title}>Chaviweb</Typography>
-          {usuario ? (
-             <Button variant="outlined" color="primary" className={classes.btnText}
-             onClick={() => cerrarSesion()}
-            >
-              Cerrar Sesión
-            </Button>
-            ) : (
-              <>
-                <Link href="/registro">
-                  <a className="links">
-                    <Typography>
-                    Registro
-                    </Typography>
-                  </a>
-                </Link>
-                <Link href="/login">
-                  <a className="links">
-                    <Typography>
-                      Iniciar Sesión
-                    </Typography>
-                  </a>
-                </Link>
-              </>
-            )}
-          
-        </Toolbar>
-      </AppBar>
-      <Box className={classes.offset}></Box>
-    </ThemeProvider>
-    </div>
+    <>
+    <div id="overlay" className=""></div>
+    <header className="site-header">
+      <div className="container">
+        <nav className="navbar">
+          <div className="menu-zone">
+                <button type="button" id="btnShowMenu"></button>
+                <div className="menu-movil">
+                  <img src="/static/img/menu_mini.png" alt="menu-img"/>
+                </div>
+          </div>
+          <div className="c-logo">
+            <img src="/static/img/logo.png" alt="logo"/>
+          </div>
+          <div className="main-menu ">
+            <ul className="menu-list">
+              <div>
+                <button id="exitMenu" type="button"></button>
+              </div>
+              <a href="#">Inicio</a>
+              <a href="#">Damas</a>
+              <a href="#">Caballeros</a>
+              <a href="#">Niños</a>
+              <a href="#">Ofertas</a>
+            </ul>
+          </div>
+          <div className="c-car">
+           <img src="/static/img/carro.png" alt=""/>
+          </div>
+          <div className="c-user">
+            <img src="/static/img/user.png" alt=""/>
+          </div>
+        </nav>
+      </div>
+    </header>
+    </>
   );
 };
 

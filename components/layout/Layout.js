@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Head from "next/head";
-import { makeStyles, Hidden} from '@material-ui/core';
 import Header from "./Header";
-import Drawer from './Drawer';
 import {motion } from 'framer-motion';
 
 const Layout = (props) => {
@@ -14,60 +12,28 @@ const Layout = (props) => {
     setYear(date.getFullYear());
   },[]);
 
-  const useStyles=makeStyles(theme=>({
-    root:{
-        display: 'flex'
-    },
-    toolbar: theme.mixins.toolbar,
-    content: {
-        flexGrow: 1,
-        minHeight:'100vh',
-        padding: theme.spacing(2),
-        backgroundColor:'#ffffff'
-    }
-  }));
-
-  const classes=useStyles();
-
-  const [open,setOpen]=useState(false);
-
-  const handleDrawerOpen=()=>{
-      setOpen(!open);
-  }
+ 
 
 
 
   return (
     <>
-      <Head>
-        <title>Distribuidora</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"/>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-       
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
-        <link href="/static/css/app.css" rel="stylesheet" />
-      </Head>
-      <div className={classes.root}>
-        <Header handleDrawerOpen={handleDrawerOpen}  />
-        <Hidden xsDown>
-          <Drawer
-          variant='permanent'
-          open={true}
+        <Head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Template</title>
+          <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+          <link rel="stylesheet" href="/static/css/normalize.css"/>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+            rel="stylesheet"
           />
-        </Hidden>
-        <Hidden smUp>
-          <Drawer
-          variant='temporary'
-          open={open}
-          onClose={handleDrawerOpen}
-          />
-        </Hidden>
-
-        <div className={classes.content}>
+          <link rel="stylesheet" href="/static/css/styles.css" />
+          <script src="/static/js/app.js"></script>
+        </Head>
+        <div className="">
+        <Header/>
+        <div className="">
           <motion.main className=''
           initial="hidden" animate="visible"variants={{
             hidden: {
