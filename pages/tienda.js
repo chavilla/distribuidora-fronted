@@ -3,12 +3,10 @@ import Layout from "../components/layout/Layout";
 import productoContext from "../context/productos/productoContext";
 import usuarioContext from "../context/usuario/usuarioContext";
 import Producto from "../components/Producto";
-import { Grid, Typography, ThemeProvider } from "@material-ui/core";
-import theme from "../components/themeConfig";
 import Spinner from "../components/layout/Spinner";
 
 const Tienda = () => {
-  const {
+  /* const {
     errorAgregado,
     agregadoFalse,
     productos,
@@ -26,28 +24,34 @@ const Tienda = () => {
       alert("Ya has agregado este producto antes");
       agregadoFalse();
     }
-  }, [errorAgregado]);
+  }, [errorAgregado]); */
 
   return (
     <Layout>
-      <ThemeProvider theme={theme}>
-        <div>
-          <Typography className="title text-center" color="secondary" variant="h3">
-            Tienda
-          </Typography>
-        </div>
 
-        { loading 
+      <section className="about container">
+        <h2 className="text-center">Tienda</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, quis
+          voluptate quibusdam vitae odit aspernatur amet tempore veniam
+          laboriosam, perspiciatis quaerat nostrum, sint unde rem est fuga?
+          Magnam eum laborum quisquam corrupti nostrum dignissimos accusantium
+          dicta aperiam nobis minima a excepturi asperiores repudiandae, nihil
+          obcaecati placeat provident sint quasi sed rem pariatur laudantium
+          fugiat natus cum? Libero, minus? Assumenda, alias?
+        </p>
+      </section>
+
+     {/*    { loading 
           ?
             <Spinner/>
           :
-          <Grid container spacing={10}>
+          <div>
             {productos.map((producto) => (
               <Producto key={producto.id} producto={producto} />
             ))}
-          </Grid> 
-         }
-      </ThemeProvider>
+          </div> 
+         } */}
     </Layout>
   );
 };

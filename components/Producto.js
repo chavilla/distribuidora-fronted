@@ -2,29 +2,22 @@ import React, { useContext } from "react";
 import Productocontext from "../context/productos/productoContext";
 import Usuariocontext from "../context/usuario/usuarioContext";
 import Link from "next/link";
-import { Grid, Typography, Button, ThemeProvider } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import theme from "./themeConfig";
-import { useStyles } from "./materialUiStyles/StylesMaterialUi";
+
 
 const Producto = ({ producto }) => {
   //----------------zona para extraer context----------------------------//
-  const {  agregarProductoCarrito } = useContext(Productocontext);
+  /* const {  agregarProductoCarrito } = useContext(Productocontext);
 
-  const { usuario } = useContext(Usuariocontext);
+  const { usuario } = useContext(Usuariocontext); */
 
   //----------------Zona de ejecucion de funciones-----------------------//
-  const añadirProducto = (productoId) => {
+ /*  const añadirProducto = (productoId) => {
     agregarProductoCarrito(productoId, usuario.id);
-  };
+  }; */
 
   //----------------Zona para aplicar desctructuring a cada producto-----//
-  const { name, price, image, car } = producto;
+  //const { name, price, image, car } = producto;
 
-  const classes=useStyles();
 
   return (
     <ThemeProvider theme={theme}>

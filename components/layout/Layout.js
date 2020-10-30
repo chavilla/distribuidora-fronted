@@ -26,11 +26,10 @@ const Layout = (props) => {
           rel="stylesheet"
         />
         <link rel="stylesheet" href="/static/css/styles.css" />
-        <script src="/static/js/app.js"></script>
       </Head>
       <Header />
       <motion.main
-        className=""
+        className="main"
         initial="hidden"
         animate="visible"
         variants={{
