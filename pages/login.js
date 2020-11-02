@@ -60,7 +60,7 @@ const Login = () => {
             <form>
               <h2 className='title-form'>Ya Soy Cliente</h2>
               <div className='campo'>
-              <label for="email">Email*</label>
+              <label htmlFor="email">Email*</label>
               <input
                 id="email"
                 name="email"

@@ -29,6 +29,7 @@ const productoState = ({ children }) => {
       });
 
       const respuesta = await clienteAxios.get("api/products");
+      
         dispatch({
           type: OBTENER_PRODUCTOS,
           payload: {

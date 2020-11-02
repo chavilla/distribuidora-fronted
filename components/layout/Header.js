@@ -22,7 +22,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import { ThemeProvider} from '@material-ui/core/styles';
 import theme from '../themeConfig'
 
-const drawerWidth = 250;
+const drawerWidth = 220;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -122,10 +122,8 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Link href='/index'>
-            <a  className='title'>
-            <Typography variant="h6">
-              Chavicode
-            </Typography>
+            <a className='title'>
+            <Typography variant="h6" color='secondary'>Chavicode</Typography>
             </a>
           </Link>
           <Link href="/login">
@@ -144,7 +142,9 @@ export default function PersistentDrawerLeft() {
         }}
       >
         <div className={classes.drawerHeader}>
-          Chavicode
+          <Link href='/index'>
+            <a>Chavicode</a>
+          </Link>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
