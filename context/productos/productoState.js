@@ -8,6 +8,7 @@ import {
   AGREGAR_PRODUCTO_ERROR,
   AGREGADO_FALSE,
   LOADING,
+  OBTENER_PRODUCTOS_CATEGORIA,
 } from "../../types/";
 import clienteAxios from "../../config/axios";
 import { uploadImage } from "../../helper/uploadImage";
@@ -29,16 +30,39 @@ const productoState = ({ children }) => {
       });
 
       const respuesta = await clienteAxios.get("api/products");
-      
-        dispatch({
-          type: OBTENER_PRODUCTOS,
-          payload: {
-            setProducts: respuesta.data.products,
-            setLoading: false,
-          },
-        });
+
+      dispatch({
+        type: OBTENER_PRODUCTOS,
+        payload: {
+          setProducts: respuesta.data.products,
+          setLoading: false,
+        },
+      });
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const obtenerProductosPorCategoria = async (categoria) => {
+    try {
+      dispatch({
+        type: LOADING,
+        payload: true,
+      });
+
+      const respuesta = await clienteAxios.get(
+        `api/products/category?category=${categoria}`
+      );
+
+      dispatch({
+        type: OBTENER_PRODUCTOS_CATEGORIA,
+        payload: {
+          setProducts: respuesta.data,
+          setLoading: false,
+        },
+      });
+    } catch (error) {
+      console.log(error.response);
     }
   };
 
@@ -103,6 +127,7 @@ const productoState = ({ children }) => {
         errorAgregado: state.errorAgregado,
         loading: state.loading,
         obtenerProductos,
+        obtenerProductosPorCategoria,
         guardarProducto,
         establecerImagen,
         agregarProductoCarrito,

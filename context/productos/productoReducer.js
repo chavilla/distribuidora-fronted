@@ -4,7 +4,8 @@ import {
     ESTABLECER_IMAGEN,
     AGREGAR_PRODUCTO_ERROR,
     AGREGADO_FALSE,
-    LOADING
+    LOADING,
+    OBTENER_PRODUCTOS_CATEGORIA
 } from '../../types/';
 
 export default (state,action)=>{
@@ -17,6 +18,7 @@ export default (state,action)=>{
             }
 
         case OBTENER_PRODUCTOS:
+        case OBTENER_PRODUCTOS_CATEGORIA:
             return{
                 ...state,
                 productos:action.payload.setProducts,

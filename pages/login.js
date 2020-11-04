@@ -23,7 +23,6 @@ const Login = () => {
   const formik = useFormik({
     initialValues: {
       email: "",
-      nombre: "",
       password: "",
     },
 
@@ -57,7 +56,7 @@ const Login = () => {
                 <a className='btnToRegister'>Registrarse</a>
               </Link>
             </div>
-            <form>
+            <form  onSubmit={formik.handleSubmit} >
               <h2 className='title-form'>Ya Soy Cliente</h2>
               <div className='campo'>
               <label htmlFor="email">Email*</label>
@@ -93,7 +92,7 @@ const Login = () => {
 
               </div>
               <div className='campo'>
-              <button type="submit" onSubmit={formik.onSubmit} >
+              <button type="submit">
                 <p color="primary">Ingresar</p>
               </button>
               {mensaje ? <p color="error">{mensaje}</p> : null}

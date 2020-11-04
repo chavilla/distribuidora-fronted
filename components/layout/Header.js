@@ -97,6 +97,32 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
+  /** Fin de zona Material ui */
+
+  //Zona de leer context
+  const { usuario,logout, usuarioAutenticado, cerrarSesion } = useContext(
+    UsuarioContext
+  );
+
+  const [admin,setAdmin]=useState(false);
+
+  //Ejecutamos usuario autenticado cuando cargue la página
+  useEffect(() => {
+    if(!logout){
+      usuarioAutenticado(); 
+    }
+  }, []);
+
+  useEffect(()=>{
+    if (usuario) {
+      if (usuario.role==='admin') {
+        setAdmin(true);
+      } 
+    }
+      else{
+        setAdmin(false);
+      }
+  },[usuario]);
   
 
   return (
@@ -126,9 +152,19 @@ export default function PersistentDrawerLeft() {
             <Typography variant="h6" color='secondary'>Chavicode</Typography>
             </a>
           </Link>
-          <Link href="/login">
+          { !usuario ?
+            <Link href="/login">
             <a><Typography variant="h6" color='secondary'>Login</Typography></a>
           </Link>
+          :
+          <button
+                type="button"
+                className="text-white font-bold text-center px-5"
+                onClick={() => cerrarSesion()}
+              >
+                Cerrar Sesión
+              </button>
+          }
         </Toolbar>
         <div className={classes.toolbar}></div>
       </AppBar>

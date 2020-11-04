@@ -275,7 +275,7 @@ section.categories{
 @media(min-width:768px){
   .card-parent{
       display: grid;
-      grid-template-columns: repeat(6,1fr);
+      grid-template-columns: repeat(4,1fr);
   }
 }
 
@@ -589,6 +589,11 @@ max-width: 100%;
 }
 
 
+/* Tienda */
+
+
+
+
 /* -------------------- LOGIN -------------------------  */
 
 .ctn-frm{
@@ -632,7 +637,6 @@ max-width: 100%;
   padding: .6rem;
   border: 1px solid #dbd6d640;
   border-radius: 5px;
-  color: var(--gray);
   margin-top: .3rem;
 }
 
@@ -648,8 +652,6 @@ max-width: 100%;
 }
 
 @media(min-width:768px){
-
-
   .ctn-frm{
     width: 95%;
     margin: 0 auto;
@@ -693,4 +695,11 @@ max-width: 100%;
     padding: 1rem;
   }
 
+}
+
+/*  store */
+
+.store{
+  padding-top: 6rem;
+  padding-bottom: 4rem;
 }
