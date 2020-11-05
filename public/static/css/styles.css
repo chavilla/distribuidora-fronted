@@ -30,14 +30,6 @@ body{
   background-color: white !important;
 }
 
-div.overlay{
-  position: fixed;
-  z-index: 100;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  opacity: .6;
-}
 
 .dark{
   background-color: var(--grayDark);
@@ -103,6 +95,17 @@ iframe{
   height: 50px;
   border: none;
 }
+
+
+/* Header */
+
+.btn-logout{
+  background-color:transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
 
 /* Div contact styles */
 
@@ -701,6 +704,28 @@ max-width: 100%;
 
 /* Car */
 
+.message{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.message p{
+  text-align: center;
+}
+
+.link-back{
+  background-color: rgb(158,73,177);
+  color: #ffffff;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
 .ctn-table{
   width: 90%;
   margin: 0 auto;
@@ -714,6 +739,27 @@ max-width: 100%;
 
 .table-car thead{
   display: none;
+}
+
+
+@media(min-width:768px){
+  .table-car{
+    margin: 0 auto;
+    width: 75%;
+  }
+
+  .table-car thead{
+    display: block;
+    margin-top: 3rem;
+  }
+
+  .table-car thead tr{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    text-align: center;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
 }
 
 .table-car .tbody-car>tr{ 
@@ -734,6 +780,14 @@ max-width: 100%;
   border: 1px solid #e9e7e7;
 }
 
+@media(min-width:768px){
+
+  .table-car tbody tr{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+  }
+}
+
 .btn-delete{
   background-color: transparent;
   border: none;
@@ -743,13 +797,33 @@ max-width: 100%;
   width: 50%;
 }
 
+@media(min-width:768px){
+  .btn-delete{
+    margin: 0 auto;
+    padding: .3rem 0;
+    width: 90%;
+    color: #ffffff;
+    cursor: pointer;
+  }
+}
+
 .table-car tbody td:first-of-type{
   display: block;
+}
+
+@media(min-width:768px){
+  .table-car tbody td:first-of-type{
+    display: flex;
+    background-color: rgb(158,73,177);
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .table-car tbody td:first-of-type div{
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .table-car tbody td div img{
@@ -767,6 +841,18 @@ max-width: 100%;
   font-weight: bold;
 } 
 
+@media(min-width:768px){
+
+  .table-car tbody td{
+    justify-content: center;
+    padding: 0;
+  }
+
+  .table-car tbody td>p{
+    display: none;
+  }
+}
+
 .table-car tbody td div{
   flex-basis: 60%;
   text-align: right;
@@ -777,6 +863,18 @@ max-width: 100%;
   border: 1px solid grey;
   padding: .5rem 0;
   margin: 0 auto;
+}
+
+@media(min-width:768px){
+  .table-car tbody td div{
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  .tbody-car td input{
+    width: 90%;
+    border: 1px solid #e9e7e7;
+  }
 }
 
 .td-total{
@@ -793,7 +891,46 @@ max-width: 100%;
 }
 
 .btn-paypal{
-  margin-top: 2rem;
-  display: block;
+  margin-top: 2.5rem;
+  display: flex;
   width: 100%;
+  justify-content: flex-end;
+}
+
+@media(min-width:768px){
+  .total{
+    text-align: right;
+    padding-right: 1rem;
+  }
+}
+
+/*  Spinner */
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(158,73,177);
+
+  margin: 100px auto;
+  -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
+  animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-rotateplane {
+  0% { -webkit-transform: perspective(120px) }
+  50% { -webkit-transform: perspective(120px) rotateY(180deg) }
+  100% { -webkit-transform: perspective(120px) rotateY(180deg)  rotateX(180deg) }
+}
+
+@keyframes sk-rotateplane {
+  0% { 
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) 
+  } 50% { 
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+    -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) 
+  } 100% { 
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
 }

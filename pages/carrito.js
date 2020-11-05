@@ -13,7 +13,6 @@ import Paypal from "../components/PaypalCheckoutButton";
 
 
 //My components
-import theme from "../components/themeConfig";
 import Spinner from "../components/layout/Spinner";
 
 const Carrito = () => {
@@ -71,16 +70,19 @@ const Carrito = () => {
           <div>
             {productosCarrito.length === 0 ? (
               <>
-                <p variant="h5">Tu carrito está vacío.</p>
-                <Link href="/tienda">
-                  <a className="link-back">Volver a la tienda</a>
-                </Link>
+              <div className='message'>
+                  <p className=''>Tu carrito está vacío.</p>
+                  <Link href="/index">
+                    <a className="link-back text-center">Regresar al inicio</a>
+                  </Link>
+                </div>
               </>
             ) : (
               <div className='ctn-table'>
                 <table className='table-car'>
                   <thead>
                     <tr>
+                      <td></td>
                       <td>Imagen</td>
                       <td>Nombre</td>
                       <td>Unidad</td>
@@ -98,7 +100,7 @@ const Carrito = () => {
                     />
                   ))}
                 </table>
-                <p className='text-center total'>Total a Pagar: <span>${priceSum}</span></p>
+                <p className='text-center total'>Total a Pagar: <span>${priceSum.toFixed(2)}</span></p>
                 <div className="my btn-paypal">
                       {count < 1 ? null : <Paypal order={ordered} />}
                   </div>

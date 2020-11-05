@@ -93,7 +93,7 @@ const CarritoProducto = ({ producto, setCount, total, setTotal }) => {
             <td className='td-total'>
               <p>Total Producto</p>
               <div>
-              <strong>$ {subtotal} </strong>
+              <strong>${subtotal} </strong>
               </div>
             </td>
           </tr>

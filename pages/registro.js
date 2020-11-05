@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import Link from 'next/link';
+import Spinner from '../components/layout/Spinner';
 import Layout from "../components/layout/Layout";
 import UsuarioContext from "../context/usuario/usuarioContext";
 import { useRouter } from 'next/router';
@@ -59,10 +60,10 @@ const Registro = (props) => {
                 <a className='btnToRegister'>Ir a login</a>
               </Link>
             </div>
-            <form>
+            <form  onSubmit={formik.handleSubmit} >
               <h2 className='title-form'>Registrarme</h2>
               <div className='campo'>
-              <label for="email">Email*</label>
+              <label htmlFor="email">Email*</label>
               <input
                 id="email"
                 name="email"
@@ -78,7 +79,7 @@ const Registro = (props) => {
               </div>
 
               <div className='campo'>
-              <label for="name">Nombres*</label>
+              <label htmlFor="name">Nombres*</label>
               <input
                 id="name"
                 name="name"
@@ -111,7 +112,7 @@ const Registro = (props) => {
 
               </div>
               <div className='campo'>
-              <button type="submit" onSubmit={formik.onSubmit} >
+              <button type="submit">
                 <p color="primary">Ingresar</p>
               </button>
               {mensaje ? <p color="error">{mensaje}</p> : null}

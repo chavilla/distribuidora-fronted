@@ -11,6 +11,7 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
+import SettingsPowerIcon from '@material-ui/icons/SettingsPower';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -159,10 +160,10 @@ export default function PersistentDrawerLeft() {
           :
           <button
                 type="button"
-                className="text-white font-bold text-center px-5"
+                className="btn-logout"
                 onClick={() => cerrarSesion()}
               >
-                Cerrar Sesión
+                <SettingsPowerIcon/>
               </button>
           }
         </Toolbar>
