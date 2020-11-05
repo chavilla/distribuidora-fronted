@@ -31,7 +31,7 @@ const myApp=({order})=> {
     };
 
 
-    // ------------------- Esta zona cea un pago o payment
+    // ------------------- Esta zona crea un pago o payment
     const payment = (data, actions) => {
       const payment = {
         transactions: [

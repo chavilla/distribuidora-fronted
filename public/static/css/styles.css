@@ -108,6 +108,7 @@ iframe{
 
 .title{
   flex-grow: 1;
+  color: #ffffff;
 }
 
 .item-menu{
@@ -142,16 +143,6 @@ iframe{
 
 .hero-title{
   width: 90%;
-}
-
-.title{
-  color: #ffffff;
-  font-size: 2.2rem;
-  font-weight: 400;
-  z-index: 1;
-  position: relative;
-  transition: all .2s ease-in;
-  z-index: -1;
 }
 
 
@@ -702,4 +693,107 @@ max-width: 100%;
 .store{
   padding-top: 6rem;
   padding-bottom: 4rem;
+}
+
+.text-uppercase{
+  text-transform: uppercase;
+}
+
+/* Car */
+
+.ctn-table{
+  width: 90%;
+  margin: 0 auto;
+}
+
+.table-car{
+  width: 100% !important;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.table-car thead{
+  display: none;
+}
+
+.table-car .tbody-car>tr{ 
+  margin: 1rem 0 !important;
+}
+
+.table-car tbody tr{
+  display: grid;
+  grid-template-columns: 100%;
+  width: 100%;
+}
+
+.table-car tbody td{
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem .5rem;
+  align-items: center;
+  border: 1px solid #e9e7e7;
+}
+
+.btn-delete{
+  background-color: transparent;
+  border: none;
+  color: rgb(158,73,177);
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.table-car tbody td:first-of-type{
+  display: block;
+}
+
+.table-car tbody td:first-of-type div{
+  display: flex;
+  justify-content: center;
+}
+
+.table-car tbody td div img{
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+}
+
+.name-car{
+  color: rgb(158,73,177);
+}
+
+.table-car tbody td p{
+  flex-basis: 60%;
+  font-weight: bold;
+} 
+
+.table-car tbody td div{
+  flex-basis: 60%;
+  text-align: right;
+}
+
+.tbody-car td input{
+  width: 50%;
+  border: 1px solid grey;
+  padding: .5rem 0;
+  margin: 0 auto;
+}
+
+.td-total{
+  background-color: #e9e7e7;
+  color: rgb(158,73,177);
+}
+
+.total{
+  font-size: 1.4rem;
+}
+
+.total span{
+  color: rgb(158,73,177);
+}
+
+.btn-paypal{
+  margin-top: 2rem;
+  display: block;
+  width: 100%;
 }

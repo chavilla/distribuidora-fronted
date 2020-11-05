@@ -39,7 +39,7 @@ const Tienda = () => {
     <Layout>
 
       <section className="store container">
-        <h2 className="text-center">Tienda</h2>
+        <h2 className="text-center text-uppercase">{categoria}</h2>
         { loading 
           ?
             <Spinner/>

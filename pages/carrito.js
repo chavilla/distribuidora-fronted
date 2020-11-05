@@ -60,15 +60,15 @@ const Carrito = () => {
 
   return (
     <Layout>
-     
+       <section className="store container">
         {msj ? <p className="">{mensaje}</p> : null}
-        <p className="title text-center">
+        <h2 className="text-center text-uppercase">
           Carrito
-        </p>
+        </h2>
         {loading ? (
           <Spinner />
         ) : (
-          <section className="">
+          <div>
             {productosCarrito.length === 0 ? (
               <>
                 <p variant="h5">Tu carrito está vacío.</p>
@@ -77,7 +77,17 @@ const Carrito = () => {
                 </Link>
               </>
             ) : (
-              <div>
+              <div className='ctn-table'>
+                <table className='table-car'>
+                  <thead>
+                    <tr>
+                      <td>Imagen</td>
+                      <td>Nombre</td>
+                      <td>Unidad</td>
+                      <td>Cantidad</td>
+                      <td>Total P</td>
+                    </tr>
+                  </thead>
                   {productosCarrito.map((producto) => (
                     <CarritoProducto
                       setCount={setCount}
@@ -87,13 +97,16 @@ const Carrito = () => {
                       total={total}
                     />
                   ))}
-                <div className="my">
-                    {count < 1 ? null : <Paypal order={ordered} />}
-                </div>
+                </table>
+                <p className='text-center total'>Total a Pagar: <span>${priceSum}</span></p>
+                <div className="my btn-paypal">
+                      {count < 1 ? null : <Paypal order={ordered} />}
+                  </div>
               </div>
             )}
-          </section>
+          </div>
         )}
+         </section>
     </Layout>
   );
 };

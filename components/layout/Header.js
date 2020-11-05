@@ -17,8 +17,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail'; 
+import HomeIcon from '@material-ui/icons/Home';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { ThemeProvider} from '@material-ui/core/styles';
 import theme from '../themeConfig'
 
@@ -190,7 +190,7 @@ export default function PersistentDrawerLeft() {
             <ListItem button>
               <Link href='/index'>
               <a className='item-menu'>
-              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemIcon><HomeIcon/></ListItemIcon>
               <ListItemText/>
               <Typography variant='button'>Inicio</Typography>
               </a>
@@ -199,18 +199,9 @@ export default function PersistentDrawerLeft() {
             <ListItem button>
               <Link href='/carrito'>
               <a className='item-menu'>
-              <ListItemIcon><InboxIcon /></ListItemIcon>
+              <ListItemIcon><ShoppingCartIcon/></ListItemIcon>
               <ListItemText/>
               <Typography variant='button'>Carrito</Typography>
-              </a>
-              </Link>
-            </ListItem>
-            <ListItem button>
-              <Link href='/ropa'>
-              <a className='item-menu'>
-              <ListItemIcon><InboxIcon /></ListItemIcon>
-              <ListItemText/>
-              <Typography variant='button'>Ropa</Typography>
               </a>
               </Link>
             </ListItem>
