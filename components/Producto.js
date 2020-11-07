@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import Link from 'next/link';
 import Productocontext from "../context/productos/productoContext";
 import Usuariocontext from "../context/usuario/usuarioContext";
 import {ThemeProvider} from '@material-ui/core';
@@ -49,10 +50,33 @@ const Producto = ({ producto }) => {
             Lámpara Tubular negra apropiada para escritorio o para una
             habitación.
           </p>
-          <button type="button" className="btn-car" onClick={()=>añadirProducto(producto)}>
-            <img src="/static/img/carro.png" alt="carro" />
-            Añadir
-          </button>
+          { usuario
+            ?
+            (
+              <>
+              { car!==0?
+                (
+                  <button type="button" className="btn-car" onClick={()=>añadirProducto(producto)}>
+                  <img src="/static/img/carro.png" alt="carro" />
+                  Añadir
+                </button>
+                )
+                :
+                (
+                  <button type="button" className="btn-car">
+                  Añadido Al carrito
+                </button>
+                )
+            }
+            </>
+            )
+            :(
+            <Link href='/registro'>
+              <a className='btn-car text-center'>Ingresar para comprar</a>
+            </Link>
+            )
+          }
+          
         </div>
       </div>
       </ThemeProvider>

@@ -41,7 +41,9 @@ const Login = () => {
   return (
     <Layout>
         {loading ? (
-          <Spinner />
+          <div className='ctn-frm'>
+            <Spinner />
+          </div>
         ) : (
           <div className="ctn-frm">
             <div className="ctn-register">
@@ -95,7 +97,7 @@ const Login = () => {
               <button type="submit">
                 <p color="primary">Ingresar</p>
               </button>
-              {mensaje ? <p color="error">{mensaje}</p> : null}
+              {mensaje ? <p className="error">{mensaje}</p> : null}
               </div>
             </form>
           </div>

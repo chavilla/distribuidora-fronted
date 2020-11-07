@@ -109,6 +109,7 @@ iframe{
 
 /* Div contact styles */
 
+
 .title{
   flex-grow: 1;
   color: #ffffff;
@@ -933,4 +934,8 @@ max-width: 100%;
     transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
   }
+}
+
+.ctn-spinner{
+  height: 60vh;
 }
